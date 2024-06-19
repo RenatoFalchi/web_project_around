@@ -48,3 +48,21 @@
   text-align: start;
   color: #fff;
 }
+
+.profile__addButton {
+  margin: 35px 0px auto;
+  border: none;
+  padding: 0px;
+  width: 150px;
+  height: 50px;
+  background: transparent;
+}
+
+.profile__addButton:hover {
+  opacity: 60%;
+}
+
+.profile__addButton-image {
+  width: 150px;
+  height: 50px;
+}
