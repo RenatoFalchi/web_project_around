@@ -15,6 +15,9 @@
 }
 
 .profile__info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: auto;
   margin-left: 30px;
   max-width: 415px;
@@ -47,6 +50,24 @@
   line-height: 5px;
   text-align: start;
   color: #fff;
+}
+
+.profile__editButton {
+  margin: 15px 0px auto 18px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  padding: 0px;
+  background: transparent;
+}
+
+.profile__editButton-image {
+  width: 24px;
+  height: 24px;
+}
+
+.profile__editButton:hover {
+  opacity: 60%;
 }
 
 .profile__addButton {
