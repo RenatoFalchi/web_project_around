@@ -58,6 +58,9 @@
   margin: 27px 0px 33px 0px;
   width: 21px;
   height: 19px;
+  background: transparent;
+  border: none;
+  padding: 0px;
 }
 
 .gallery__grid_card-likeButton:hover {
