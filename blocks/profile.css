@@ -39,7 +39,7 @@
 }
 
 .profile__info_about {
-  max-width: 93px;
+  max-width: 373px;
   margin: 16px auto 0px 0px;
 
   font-family: "InterDisplay", Arial, Helvetica, sans-serif;
@@ -60,13 +60,13 @@
   background: transparent;
 }
 
+.profile__editButton:hover {
+  opacity: 60%;
+}
+
 .profile__editButton-image {
   width: 24px;
   height: 24px;
-}
-
-.profile__editButton:hover {
-  opacity: 60%;
 }
 
 .profile__addButton {

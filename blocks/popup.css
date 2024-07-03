@@ -1,14 +1,19 @@
 .popup {
-  position: absolute;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   background: rgba(0, 0, 0, 0.5);
-  opacity: 50%;
   min-width: 100%;
   min-height: 100%;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.popup__opened {
+  display: flex;
 }
 
 .popup__container {
@@ -17,7 +22,7 @@
   width: 430px;
   height: 330px;
   border-radius: 10px;
-  box-shadow: 0 5px 5px 0px #000;
+  box-shadow: 0 5px 20px 0px #000;
 }
 
 .popup__close-button {
@@ -82,8 +87,8 @@
 .popup__save-button {
   width: 358px;
   height: 50px;
-  background-color: #fff;
-  border: 1px solid #000;
+  background-color: #000;
+  border: none;
   padding: 0px;
   margin: 48px 36px 0px 36px;
 
@@ -93,5 +98,9 @@
   font-size: 18px;
   line-height: 5px;
   text-align: center;
-  color: #000;
+  color: #fff;
+}
+
+.popup__save-button:hover {
+  opacity: 50%;
 }

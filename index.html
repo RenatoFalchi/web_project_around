@@ -33,7 +33,7 @@
           />
           <div class="profile__info">
             <h1 class="profile__info_name">Jacques Cousteau</h1>
-            <button class="profile__editButton">
+            <button type="button" class="profile__editButton">
               <img
                 src="./images/Content-Profile-EditButton.png"
                 class="profile__editButton-image"
@@ -159,7 +159,7 @@
                 type="text"
                 placeholder="Nome"
                 id="name"
-                maxlenght="140"
+                maxlength="33"
                 required
               />
               <input
@@ -167,14 +167,15 @@
                 type="text"
                 placeholder="Sobre Mim"
                 id="about"
-                maxlenght="140"
+                maxlength="45"
                 required
               />
             </fieldset>
+            <button type="submit" class="popup__save-button">Salvar</button>
           </form>
-          <button type="button" class="popup__save-button">Salvar</button>
         </div>
       </section>
     </div>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
