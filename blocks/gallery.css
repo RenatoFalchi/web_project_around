@@ -17,7 +17,7 @@
   width: 100%;
 }
 
-.gallery__grid_card {
+.gallery__grid-card {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -30,14 +30,14 @@
   background-color: #fff;
 }
 
-.gallery__grid_card-image {
+.gallery__grid-cardImage {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   width: 282px;
   height: 282px;
 }
 
-.gallery__grid_card-text {
+.gallery__grid_cardText {
   max-width: 222px;
   width: 222px;
   margin: 25px 2px 31px 21px;
@@ -54,7 +54,7 @@
   overflow: hidden;
 }
 
-.gallery__grid_card-likeButton {
+.gallery__grid-cardLikeButton {
   margin: 27px 0px 33px 0px;
   width: 21px;
   height: 19px;
@@ -63,15 +63,15 @@
   padding: 0px;
 }
 
-.gallery__grid_card-likeButton:hover {
+.gallery__grid-cardLikeButton:hover {
   opacity: 50%;
 }
 
-.gallery__grid_card-likeButton:active {
+.gallery__grid-cardLikeButton:active {
   background-color: rgb(0, 0, 0);
 }
 
-.gallery__grid_card-likeButtonIcon {
+.gallery__grid-cardLikeButtonIcon {
   width: 21px;
   height: 19px;
 }
