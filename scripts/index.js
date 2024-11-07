@@ -24,8 +24,8 @@ function handleProfileSubmit(evt) {
   let nameInput = document.querySelector("#name").value;
   let aboutInput = document.querySelector("#about").value;
 
-  let userName = document.querySelector(".profile__info_name");
-  let userAbout = document.querySelector(".profile__info_about");
+  let userName = document.querySelector(".profile__info-name");
+  let userAbout = document.querySelector(".profile__info-about");
 
   userName.textContent = nameInput;
   userAbout.textContent = aboutInput;

@@ -27,6 +27,7 @@
 
 .profile__info-name {
   max-width: 373px;
+  min-width: 373px;
   margin: 0px;
 
   font-family: "InterDisplay", Arial, Helvetica, sans-serif;
@@ -40,6 +41,7 @@
 
 .profile__info-about {
   max-width: 373px;
+  min-width: 373px;
   margin: 16px auto 0px 0px;
 
   font-family: "InterDisplay", Arial, Helvetica, sans-serif;
