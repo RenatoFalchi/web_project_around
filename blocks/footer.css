@@ -18,3 +18,15 @@
   text-align: start;
   color: #545454;
 }
+
+@media screen and (max-width: 544px) {
+  .footer {
+    max-width: 282px;
+  }
+
+  .footer__copyright {
+    margin: 50px auto 36px 0px;
+
+    font-size: 14px;
+  }
+}

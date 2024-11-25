@@ -104,3 +104,47 @@
 .popup__save-button:hover {
   opacity: 50%;
 }
+
+@media screen and (max-width: 544px) {
+  .popup__container {
+    width: 282px;
+    height: 322px;
+  }
+
+  .popup__close-button {
+    top: -40px;
+    left: 254px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .popup__close-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .popup__container-title {
+    max-width: 238px;
+    margin: 25px auto auto auto;
+
+    font-size: 18px;
+  }
+
+  .popup__form-fieldset {
+    margin: 67px auto auto auto;
+  }
+
+  .popup__form-fieldsetInput {
+    width: 238px;
+    margin: 0px auto;
+  }
+
+  .popup__save-button {
+    width: 238px;
+    height: 46px;
+
+    margin: 46px 22px 25px 22px;
+
+    font-size: 14px;
+  }
+}

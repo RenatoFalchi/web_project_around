@@ -24,3 +24,21 @@
   width: 173px;
   height: 33px;
 }
+
+@media screen and (max-width: 544px) {
+  .header {
+    max-width: 544px;
+  }
+
+  .header__box {
+    margin: 28px auto auto 0px;
+    width: 100%;
+    height: 56px;
+  }
+
+  .header__logo {
+    width: 126px;
+    height: 24px;
+    margin: 0px auto auto 27px;
+  }
+}

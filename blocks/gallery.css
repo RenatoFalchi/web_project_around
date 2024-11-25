@@ -75,3 +75,27 @@
   width: 21px;
   height: 19px;
 }
+
+@media screen and (max-width: 896px) {
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    width: 581px;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .gallery {
+    margin: 36px auto 0px;
+    max-width: 282px;
+  }
+
+  .gallery__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+
+    max-width: 282px;
+  }
+}

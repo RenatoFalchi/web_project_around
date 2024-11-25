@@ -88,3 +88,78 @@
   width: 150px;
   height: 50px;
 }
+
+@media screen and (max-width: 544px) {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 282px;
+    height: 286px;
+    margin: 42px auto 0px;
+    box-sizing: border-box;
+  }
+
+  .profile__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px auto 0px auto;
+
+    max-width: 282px;
+    width: 220px;
+  }
+
+  .profile__info-name {
+    max-width: 282px;
+    min-width: 190px;
+    margin: 0px;
+
+    font-family: "InterDisplay", Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 22px;
+    text-align: start;
+    color: #fff;
+  }
+
+  .profile__info-about {
+    max-width: 282px;
+    min-width: 150px;
+
+    margin: 16px auto 0px auto;
+
+    font-family: "InterDisplay", Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 5px;
+    text-align: center;
+    color: #fff;
+  }
+
+  .profile__editButton {
+    margin: 0px auto 0px 10px;
+    width: 18px;
+    height: 18px;
+    border: none;
+  }
+
+  .profile__editButton-image {
+    width: 18px;
+    height: 18px;
+  }
+
+  .profile__addButton {
+    margin: 35px 0px auto;
+    width: 282px;
+    height: 50px;
+  }
+
+  .profile__addButton-image {
+    width: 282px;
+    height: 50px;
+  }
+}

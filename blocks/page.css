@@ -7,3 +7,23 @@
   font-size: 16px;
   line-height: 20px;
 }
+
+@media screen and (max-width: 1024px) {
+  .page {
+    max-width: 1024px;
+  }
+}
+
+@media screen and (max-width: 896px) {
+  .page {
+    max-width: 896px;
+    min-width: 753px;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .page {
+    max-width: 544px;
+    min-width: 344px;
+  }
+}
