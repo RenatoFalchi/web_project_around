@@ -105,7 +105,7 @@
   opacity: 50%;
 }
 
-@media screen and (max-width: 544px) {
+@media screen and (max-width: 767px) {
   .popup__container {
     width: 282px;
     height: 322px;

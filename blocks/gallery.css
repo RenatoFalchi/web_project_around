@@ -86,7 +86,7 @@
   }
 }
 
-@media screen and (max-width: 544px) {
+@media screen and (max-width: 767px) {
   .gallery {
     margin: 36px auto 0px;
     max-width: 282px;
