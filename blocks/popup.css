@@ -1,4 +1,18 @@
-.popup {
+.popupedit {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  min-width: 100%;
+  min-height: 100%;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.popupPlace {
   display: none;
   flex-direction: column;
   align-items: center;
@@ -103,6 +117,64 @@
 
 .popup__save-button:hover {
   opacity: 50%;
+}
+
+.photoFrame {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  min-width: 100%;
+  min-height: 100%;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.photoFrame__opened {
+  display: flex;
+}
+
+.photoFrame__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.photoFrame__close-button {
+  position: absolute;
+  top: -38px;
+  left: 570px;
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+
+  width: 32px;
+  height: 32px;
+}
+
+.photoFrame__close-button:hover {
+  opacity: 50%;
+}
+
+.photoFrame__text {
+  min-width: 292px;
+  margin: 10px auto 0px 0px;
+
+  font-family: "InterDisplay", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 5px;
+  text-align: start;
+  color: #fff;
 }
 
 @media screen and (max-width: 767px) {
