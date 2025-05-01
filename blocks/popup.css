@@ -231,4 +231,9 @@
 
     font-size: 14px;
   }
+
+  .photoFrame__close-button {
+    top: -29px;
+    right: -30px;
+  }
 }

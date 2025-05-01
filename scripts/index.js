@@ -86,16 +86,13 @@ const initialCards = [
   },
 ];
 
-// Seleciona o container da galeria e o template
 const galleryGrid = document.querySelector(".gallery__grid");
 const cardTemplate = document.querySelector("#card-template").content;
 
 ///////////////     CRIA CARTÕES INICIAIS     //////////////////
-// Função que cria um card a partir do template
 function createCard(cardData) {
-  const cardElement = cardTemplate.cloneNode(true); // Clona o template
+  const cardElement = cardTemplate.cloneNode(true);
 
-  // Atualiza os dados do card
   const cardImage = cardElement.querySelector(".gallery__grid-cardImage");
   const cardText = cardElement.querySelector(".gallery__grid-cardText");
   const deleteButton = cardElement.querySelector(
@@ -108,7 +105,6 @@ function createCard(cardData) {
   cardImage.alt = cardData.name;
   cardText.textContent = cardData.name;
 
-  // Adiciona o evento de clique para deletar o cartão
   deleteButton.addEventListener("click", deleteCard);
 
   likeButton.addEventListener("click", likeButtonAction);
@@ -120,7 +116,6 @@ function createCard(cardData) {
   return cardElement;
 }
 
-// Renderiza os cards na galeria
 function renderCards() {
   initialCards.forEach((cardData) => {
     const cardElement = createCard(cardData);
@@ -128,7 +123,6 @@ function renderCards() {
   });
 }
 
-// Chama a função para exibir os cards ao carregar a página
 renderCards();
 
 ///////////////     LIKE     //////////////////
@@ -171,40 +165,32 @@ function closePhotoFrame() {
 
 /////////CÓDIGO PARA ADICIONAR UM NOVO CARTÃO///////////
 
-// Função que será chamada quando o formulário for enviado
 function addNewCard(event) {
-  event.preventDefault(); // Impede que a página seja recarregada
+  event.preventDefault();
 
-  // Captura os valores dos campos do formulário
   const placeTitle = document.querySelector("#placeTitle").value;
   const placeImage = document.querySelector("#placeImage").value;
 
-  // Cria um novo objeto com os dados do novo lugar
   const newCard = {
     name: placeTitle,
     link: placeImage,
   };
 
-  // Adiciona o novo cartão no começo do array
   initialCards.unshift(newCard);
 
-  // Cria o novo cartão e o adiciona diretamente à galeria
   const newCardElement = createCard(newCard);
-  galleryGrid.prepend(newCardElement); // Adiciona o novo cartão no começo
+  galleryGrid.prepend(newCardElement);
 
-  // Fecha o popup
   closeAddPopup();
 
-  // Limpa os campos do formulário
   addForm.reset();
 }
 
-// Adiciona o evento de envio do formulário
 addForm.addEventListener("submit", addNewCard);
 
 ////////////////////////// REMOVER CARTÕES /////////////////////
 
 function deleteCard(event) {
-  const cardElement = event.currentTarget.closest(".gallery__grid-card"); // Pega o cartão (pai do botão de delete)
-  cardElement.remove(); // Remove o cartão da galeria
+  const cardElement = event.currentTarget.closest(".gallery__grid-card");
+  cardElement.remove();
 }
