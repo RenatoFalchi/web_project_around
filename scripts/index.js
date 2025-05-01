@@ -113,7 +113,9 @@ function createCard(cardData) {
 
   likeButton.addEventListener("click", likeButtonAction);
 
-  cardPhotoFrame.addEventListener("click", openPhotoFrame);
+  cardPhotoFrame.addEventListener("click", () => {
+    openPhotoFrame(cardData.link, cardData.name, cardData.name);
+  });
 
   return cardElement;
 }
@@ -149,8 +151,14 @@ const photoFrameCloseButton = document.querySelector("#closePhotoButton");
 
 photoFrameCloseButton.addEventListener("click", closePhotoFrame);
 
-function openPhotoFrame() {
-  let photoFrame = document.querySelector(".photoFrame");
+function openPhotoFrame(imageSrc, imageAlt, titleText) {
+  const photoFrame = document.querySelector(".photoFrame");
+  const photoImage = photoFrame.querySelector(".photoFrame__image");
+  const photoText = photoFrame.querySelector(".photoFrame__text");
+
+  photoImage.src = imageSrc;
+  photoImage.alt = imageAlt;
+  photoText.textContent = titleText;
 
   photoFrame.classList.add("photoFrame__opened");
 }
