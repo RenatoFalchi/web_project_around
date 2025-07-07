@@ -194,3 +194,5 @@ function deleteCard(event) {
   const cardElement = event.currentTarget.closest(".gallery__grid-card");
   cardElement.remove();
 }
+
+//teste
