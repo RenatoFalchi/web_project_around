@@ -103,17 +103,21 @@
                 type="text"
                 placeholder="Nome"
                 id="name"
-                maxlength="19"
+                minlength="2"
+                maxlength="40"
                 required
               />
+              <span class="popup__form-error" id="name-error"></span>
               <input
                 class="popup__form-fieldsetInput"
                 type="text"
                 placeholder="Sobre Mim"
                 id="about"
-                maxlength="20"
+                minlength="2"
+                maxlength="200"
                 required
               />
+              <span class="popup__form-error" id="about-error"></span>
             </fieldset>
             <button type="submit" class="popup__save-button">Salvar</button>
           </form>
@@ -136,17 +140,20 @@
                 type="text"
                 placeholder="Título"
                 id="placeTitle"
-                maxlength="19"
+                minlength="2"
+                maxlength="30"
                 required
               />
+              <span class="popup__form-error" id="placeTitle-error"></span>
               <input
                 class="popup__form-fieldsetInput"
-                type="text"
+                type="url"
                 placeholder="Link de imagem"
                 id="placeImage"
                 maxlength=""
                 required
               />
+              <span class="popup__form-error" id="placeImage-error"></span>
             </fieldset>
             <button type="submit" class="popup__save-button">Criar</button>
           </form>

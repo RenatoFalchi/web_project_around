@@ -194,3 +194,64 @@ function deleteCard(event) {
   const cardElement = event.currentTarget.closest(".gallery__grid-card");
   cardElement.remove();
 }
+
+////////////////////// VALIDAÇÃO DE FORMULÁRIOS ////////////////////
+//// LEMBRAR DE MIGRAR ISSO PARA O ARQUIVO validate.js E IMPORTAR PARA O INDEX ////////////////////////////
+
+/* const formAElement = document.querySelector(".popup__form");
+const formInput = formAElement.querySelector(".popup__form-fieldsetInput");
+
+const showInputError = (element) => {
+  element.classList.add("popup__form-fieldsetInput_error");
+};
+
+const hideInputError = (element) => {
+  element.classList.remove("popup__form-fieldsetInput_error");
+};
+
+const isValid = () => {
+  if (!formInput.validity.valid) {
+    showInputError(formInput);
+  } else {
+    hideInputError(formInput);
+  }
+};
+
+formAElement.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+});
+
+formInput.addEventListener("input", isValid); */
+
+//////////////////////////////////////
+
+function checkInputValidity(formElement, inputElement) {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  if (!inputElement.validity.valid) {
+    inputElement.classList.add("popup__form-fieldsetInput_error");
+    errorElement.textContent = inputElement.validationMessage;
+  } else {
+    inputElement.classList.remove("popup__form-fieldsetInput_error");
+    errorElement.textContent = "";
+  }
+}
+
+function toggleButtonState(formElement) {
+  const button = formElement.querySelector(".popup__save-button");
+  const inputs = Array.from(
+    formElement.querySelectorAll(".popup__form-fieldsetInput")
+  );
+  const isFormValid = inputs.every((input) => input.validity.valid);
+  button.disabled = !isFormValid;
+  button.classList.toggle("popup__save-button_disabled", !isFormValid);
+}
+
+const form = document.querySelector("#editForm");
+const inputs = form.querySelectorAll(".popup__form-fieldsetInput");
+
+inputs.forEach((input) => {
+  input.addEventListener("input", () => {
+    checkInputValidity(form, input);
+    toggleButtonState(form);
+  });
+});
