@@ -7,6 +7,9 @@ function openPopup() {
   let popup = document.querySelector(".popupedit");
 
   popup.classList.add("popup__opened");
+
+  const form = popup.querySelector(".popup__form");
+  toggleButtonState(form);
 }
 
 function closePopup() {
@@ -45,6 +48,9 @@ const closeAddButton = document.querySelector("#closeAddButton");
 function openAddPopup() {
   let popup = document.querySelector(".popupPlace");
   popup.classList.add("popup__opened");
+
+  const form = popup.querySelector(".popup__form");
+  toggleButtonState(form);
 }
 
 function closeAddPopup() {
@@ -227,6 +233,7 @@ formInput.addEventListener("input", isValid); */
 
 function checkInputValidity(formElement, inputElement) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+
   if (!inputElement.validity.valid) {
     inputElement.classList.add("popup__form-fieldsetInput_error");
     errorElement.textContent = inputElement.validationMessage;
@@ -238,20 +245,28 @@ function checkInputValidity(formElement, inputElement) {
 
 function toggleButtonState(formElement) {
   const button = formElement.querySelector(".popup__save-button");
+
   const inputs = Array.from(
     formElement.querySelectorAll(".popup__form-fieldsetInput")
   );
+
   const isFormValid = inputs.every((input) => input.validity.valid);
+
   button.disabled = !isFormValid;
   button.classList.toggle("popup__save-button_disabled", !isFormValid);
 }
 
-const form = document.querySelector("#editForm");
-const inputs = form.querySelectorAll(".popup__form-fieldsetInput");
+const forms = document.querySelectorAll(".popup__form");
 
-inputs.forEach((input) => {
-  input.addEventListener("input", () => {
-    checkInputValidity(form, input);
-    toggleButtonState(form);
+forms.forEach((form) => {
+  const inputs = form.querySelectorAll(".popup__form-fieldsetInput");
+
+  inputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      checkInputValidity(form, input);
+      toggleButtonState(form);
+    });
   });
+
+  toggleButtonState(form); // Verifica o botão logo no início
 });

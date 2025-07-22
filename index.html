@@ -108,9 +108,7 @@
                   maxlength="40"
                   required
                 />
-                <span class="popup__form-error" id="name-error"
-                  >Preencha este campo</span
-                >
+                <span class="popup__form-error" id="name-error"></span>
               </div>
               <div class="popup__form-fieldsetBox">
                 <input
@@ -122,13 +120,11 @@
                   maxlength="200"
                   required
                 />
-                <span class="popup__form-error" id="about-error"
-                  >Por favor, insira um endereço web.</span
-                >
+                <span class="popup__form-error" id="about-error"></span>
               </div>
             </fieldset>
+            <button type="submit" class="popup__save-button">Salvar</button>
           </form>
-          <button type="submit" class="popup__save-button">Salvar</button>
         </div>
       </section>
       <section class="popupPlace">
@@ -143,25 +139,29 @@
           <h2 class="popup__container-title">Novo Local</h2>
           <form id="addForm" class="popup__form">
             <fieldset class="popup__form-fieldset">
-              <input
-                class="popup__form-fieldsetInput"
-                type="text"
-                placeholder="Título"
-                id="placeTitle"
-                minlength="2"
-                maxlength="30"
-                required
-              />
-              <span class="popup__form-error" id="placeTitle-error"></span>
-              <input
-                class="popup__form-fieldsetInput"
-                type="url"
-                placeholder="Link de imagem"
-                id="placeImage"
-                maxlength=""
-                required
-              />
-              <span class="popup__form-error" id="placeImage-error"></span>
+              <div class="popup__form-fieldsetBox">
+                <input
+                  class="popup__form-fieldsetInput"
+                  type="text"
+                  placeholder="Título"
+                  id="placeTitle"
+                  minlength="2"
+                  maxlength="30"
+                  required
+                />
+                <span class="popup__form-error" id="placeTitle-error"></span>
+              </div>
+              <div class="popup__form-fieldsetBox">
+                <input
+                  class="popup__form-fieldsetInput"
+                  type="url"
+                  placeholder="Link de imagem"
+                  id="placeImage"
+                  maxlength=""
+                  required
+                />
+                <span class="popup__form-error" id="placeImage-error"></span>
+              </div>
             </fieldset>
             <button type="submit" class="popup__save-button">Criar</button>
           </form>
