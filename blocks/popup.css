@@ -40,15 +40,17 @@
 }
 
 .popup__close-button {
+  background-color: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+}
+
+.poopup__close-headerButton {
   position: absolute;
   top: -34px;
   left: 432px;
-  background-color: transparent;
-  border: none;
   padding: 0px;
-
-  width: 32px;
-  height: 32px;
 }
 
 .popup__close-icon {
@@ -202,13 +204,7 @@
   position: absolute;
   top: -38px;
   right: -32px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
   z-index: 2;
-
-  width: 32px;
-  height: 32px;
 }
 
 .photoFrame__close-button:hover {

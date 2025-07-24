@@ -1,7 +1,8 @@
-// POPUP PARA EDIÇÃO DO NOME
-
 const editButton = document.querySelector(".profile__editButton");
-const closeButton = document.querySelector("#closeEditButton");
+const closeButton = document.querySelector(".popup__close-button");
+
+const editForm = document.querySelector("#editForm");
+const addForm = document.querySelector("#addForm");
 
 function openPopup() {
   let popup = document.querySelector(".popupedit");
@@ -36,6 +37,8 @@ function handleProfileSubmit(evt) {
   userAbout.textContent = aboutInput;
 
   closePopup();
+
+  editForm.reset();
 }
 
 formElement.addEventListener("submit", handleProfileSubmit);
@@ -61,7 +64,6 @@ function closeAddPopup() {
 
 addButton.addEventListener("click", openAddPopup);
 closeAddButton.addEventListener("click", closeAddPopup);
-/////////////
 
 // INICIO DO CÓDIGO DOS CARTÕES INICIAIS
 
@@ -95,7 +97,8 @@ const initialCards = [
 const galleryGrid = document.querySelector(".gallery__grid");
 const cardTemplate = document.querySelector("#card-template").content;
 
-///////////////     CRIA CARTÕES INICIAIS     //////////////////
+// CRIA CARTÕES INICIAIS
+
 function createCard(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
 
@@ -131,7 +134,8 @@ function renderCards() {
 
 renderCards();
 
-///////////////     LIKE     //////////////////
+// LIKE
+
 function likeButtonAction(event) {
   const buttonElement = event.currentTarget;
   const likeButtonIcon = buttonElement.querySelector(
@@ -145,7 +149,7 @@ function likeButtonAction(event) {
   }
 }
 
-///////////// PHOTOFRAME    ////////////////////////
+// PHOTOFRAME
 
 const photoFrameCloseButton = document.querySelector("#closePhotoButton");
 
@@ -169,7 +173,7 @@ function closePhotoFrame() {
   photoFrame.classList.remove("photoFrame__opened");
 }
 
-/////////CÓDIGO PARA ADICIONAR UM NOVO CARTÃO///////////
+// CÓDIGO PARA ADICIONAR UM NOVO CARTÃO
 
 function addNewCard(event) {
   event.preventDefault();
@@ -194,7 +198,7 @@ function addNewCard(event) {
 
 addForm.addEventListener("submit", addNewCard);
 
-////////////////////////// REMOVER CARTÕES /////////////////////
+// REMOVER CARTÕES
 
 function deleteCard(event) {
   const cardElement = event.currentTarget.closest(".gallery__grid-card");
@@ -203,33 +207,6 @@ function deleteCard(event) {
 
 ////////////////////// VALIDAÇÃO DE FORMULÁRIOS ////////////////////
 //// LEMBRAR DE MIGRAR ISSO PARA O ARQUIVO validate.js E IMPORTAR PARA O INDEX ////////////////////////////
-
-/* const formAElement = document.querySelector(".popup__form");
-const formInput = formAElement.querySelector(".popup__form-fieldsetInput");
-
-const showInputError = (element) => {
-  element.classList.add("popup__form-fieldsetInput_error");
-};
-
-const hideInputError = (element) => {
-  element.classList.remove("popup__form-fieldsetInput_error");
-};
-
-const isValid = () => {
-  if (!formInput.validity.valid) {
-    showInputError(formInput);
-  } else {
-    hideInputError(formInput);
-  }
-};
-
-formAElement.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-});
-
-formInput.addEventListener("input", isValid); */
-
-//////////////////////////////////////
 
 function checkInputValidity(formElement, inputElement) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -268,5 +245,30 @@ forms.forEach((form) => {
     });
   });
 
-  toggleButtonState(form); // Verifica o botão logo no início
+  toggleButtonState(form);
+});
+
+const popups = document.querySelectorAll(".popup");
+
+popups.forEach((popup) => {
+  popup.addEventListener("click", (event) => {
+    if (event.target === popup) {
+      closePopup(popup);
+      closeAddPopup(popup);
+      closePhotoFrame(popup);
+    }
+  });
+});
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    const openedPopup = document.querySelector(".popup__opened");
+    const openedPhotoFrame = document.querySelector(".photoFrame__opened");
+    if (openedPopup || openedPhotoFrame) {
+      console.log("mais outro teste");
+      closePopup(openedPopup);
+      closeAddPopup(openedPopup);
+      closePhotoFrame(openedPopup);
+    }
+  }
 });
