@@ -259,16 +259,24 @@
     margin: 67px auto auto auto;
   }
 
+  .popup__form-fieldsetBox {
+    margin: 0px 10px 0px 20px;
+  }
+
   .popup__form-fieldsetInput {
     width: 238px;
     margin: 0px auto;
+  }
+
+  .popup__form-error {
+    width: 242px;
   }
 
   .popup__save-button {
     width: 238px;
     height: 46px;
 
-    margin: 46px 22px 25px 22px;
+    margin: 10px 21px 20px 21px;
 
     font-size: 14px;
   }
