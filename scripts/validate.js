@@ -50,7 +50,7 @@ popups.forEach((popup) => {
   });
 });
 
-window.addEventListener("keydown", (event) => {
+function handleEscClose(event) {
   if (event.key === "Escape") {
     const openedPopup = document.querySelector(".popup__opened");
     const openedPhotoFrame = document.querySelector(".photoFrame__opened");
@@ -60,4 +60,13 @@ window.addEventListener("keydown", (event) => {
       closePhotoFrame(openedPopup);
     }
   }
+}
+
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__form-fieldsetInput",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_disabled",
+  inputErrorClass: "popup__form-fieldsetInput_error",
+  errorClass: "popup__error_visible",
 });

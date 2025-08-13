@@ -11,12 +11,15 @@ function openPopup() {
 
   const form = popup.querySelector(".popup__form");
   toggleButtonState(form);
+  document.addEventListener("keydown", handleEscClose);
 }
 
 function closePopup() {
   const popup = document.querySelector(".popupedit");
 
   popup.classList.remove("popup__opened");
+
+  document.removeEventListener("keydown", handleEscClose);
 }
 
 editButton.addEventListener("click", openPopup);
@@ -52,12 +55,14 @@ function openAddPopup() {
 
   const form = popup.querySelector(".popup__form");
   toggleButtonState(form);
+  document.addEventListener("keydown", handleEscClose);
 }
 
 function closeAddPopup() {
   const popup = document.querySelector(".popupPlace");
 
   popup.classList.remove("popup__opened");
+  document.removeEventListener("keydown", handleEscClose);
 }
 
 addButton.addEventListener("click", openAddPopup);
@@ -155,12 +160,14 @@ function openPhotoFrame(imageSrc, imageAlt, titleText) {
   photoText.textContent = titleText;
 
   photoFrame.classList.add("photoFrame__opened");
+  document.addEventListener("keydown", handleEscClose);
 }
 
 function closePhotoFrame() {
   const photoFrame = document.querySelector(".photoFrame");
 
   photoFrame.classList.remove("photoFrame__opened");
+  document.addEventListener("keydown", handleEscClose);
 }
 
 function addNewCard(event) {
@@ -190,12 +197,3 @@ function deleteCard(event) {
   const cardElement = event.currentTarget.closest(".gallery__grid-card");
   cardElement.remove();
 }
-
-enableValidation({
-  formSelector: ".popup__form",
-  inputSelector: ".popup__form-fieldsetInput",
-  submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: "popup__save-button_disabled",
-  inputErrorClass: "popup__form-fieldsetInput_error",
-  errorClass: "popup__error_visible",
-});
