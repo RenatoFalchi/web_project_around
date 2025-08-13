@@ -43,8 +43,6 @@ function handleProfileSubmit(evt) {
 
 formElement.addEventListener("submit", handleProfileSubmit);
 
-// POPUP PARA ADICIONAR CARTÃO
-
 const addButton = document.querySelector(".profile__addButton");
 const closeAddButton = document.querySelector("#closeAddButton");
 
@@ -64,8 +62,6 @@ function closeAddPopup() {
 
 addButton.addEventListener("click", openAddPopup);
 closeAddButton.addEventListener("click", closeAddPopup);
-
-// INICIO DO CÓDIGO DOS CARTÕES INICIAIS
 
 const initialCards = [
   {
@@ -96,8 +92,6 @@ const initialCards = [
 
 const galleryGrid = document.querySelector(".gallery__grid");
 const cardTemplate = document.querySelector("#card-template").content;
-
-// CRIA CARTÕES INICIAIS
 
 function createCard(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -134,8 +128,6 @@ function renderCards() {
 
 renderCards();
 
-// LIKE
-
 function likeButtonAction(event) {
   const buttonElement = event.currentTarget;
   const likeButtonIcon = buttonElement.querySelector(
@@ -148,8 +140,6 @@ function likeButtonAction(event) {
     likeButtonIcon.src = "./images/Content-Card-LikeButtonActive.svg";
   }
 }
-
-// PHOTOFRAME
 
 const photoFrameCloseButton = document.querySelector("#closePhotoButton");
 
@@ -172,8 +162,6 @@ function closePhotoFrame() {
 
   photoFrame.classList.remove("photoFrame__opened");
 }
-
-// CÓDIGO PARA ADICIONAR UM NOVO CARTÃO
 
 function addNewCard(event) {
   event.preventDefault();
@@ -198,77 +186,16 @@ function addNewCard(event) {
 
 addForm.addEventListener("submit", addNewCard);
 
-// REMOVER CARTÕES
-
 function deleteCard(event) {
   const cardElement = event.currentTarget.closest(".gallery__grid-card");
   cardElement.remove();
 }
 
-////////////////////// VALIDAÇÃO DE FORMULÁRIOS ////////////////////
-//// LEMBRAR DE MIGRAR ISSO PARA O ARQUIVO validate.js E IMPORTAR PARA O INDEX ////////////////////////////
-
-function checkInputValidity(formElement, inputElement) {
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-
-  if (!inputElement.validity.valid) {
-    inputElement.classList.add("popup__form-fieldsetInput_error");
-    errorElement.textContent = inputElement.validationMessage;
-  } else {
-    inputElement.classList.remove("popup__form-fieldsetInput_error");
-    errorElement.textContent = "";
-  }
-}
-
-function toggleButtonState(formElement) {
-  const button = formElement.querySelector(".popup__save-button");
-
-  const inputs = Array.from(
-    formElement.querySelectorAll(".popup__form-fieldsetInput")
-  );
-
-  const isFormValid = inputs.every((input) => input.validity.valid);
-
-  button.disabled = !isFormValid;
-  button.classList.toggle("popup__save-button_disabled", !isFormValid);
-}
-
-const forms = document.querySelectorAll(".popup__form");
-
-forms.forEach((form) => {
-  const inputs = form.querySelectorAll(".popup__form-fieldsetInput");
-
-  inputs.forEach((input) => {
-    input.addEventListener("input", () => {
-      checkInputValidity(form, input);
-      toggleButtonState(form);
-    });
-  });
-
-  toggleButtonState(form);
-});
-
-const popups = document.querySelectorAll(".popup");
-
-popups.forEach((popup) => {
-  popup.addEventListener("click", (event) => {
-    if (event.target === popup) {
-      closePopup(popup);
-      closeAddPopup(popup);
-      closePhotoFrame(popup);
-    }
-  });
-});
-
-window.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    const openedPopup = document.querySelector(".popup__opened");
-    const openedPhotoFrame = document.querySelector(".photoFrame__opened");
-    if (openedPopup || openedPhotoFrame) {
-      console.log("mais outro teste");
-      closePopup(openedPopup);
-      closeAddPopup(openedPopup);
-      closePhotoFrame(openedPopup);
-    }
-  }
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__form-fieldsetInput",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_disabled",
+  inputErrorClass: "popup__form-fieldsetInput_error",
+  errorClass: "popup__error_visible",
 });
