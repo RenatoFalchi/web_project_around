@@ -55,7 +55,6 @@ window.addEventListener("keydown", (event) => {
     const openedPopup = document.querySelector(".popup__opened");
     const openedPhotoFrame = document.querySelector(".photoFrame__opened");
     if (openedPopup || openedPhotoFrame) {
-      console.log("mais outro teste");
       closePopup(openedPopup);
       closeAddPopup(openedPopup);
       closePhotoFrame(openedPopup);

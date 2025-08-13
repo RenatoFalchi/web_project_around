@@ -37,6 +37,12 @@
   line-height: 48px;
   text-align: start;
   color: #fff;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  display: block;
 }
 
 .profile__info-about {
@@ -48,9 +54,15 @@
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  line-height: 5px;
+  line-height: 1;
   text-align: start;
   color: #fff;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  display: block;
 }
 
 .profile__editButton {
@@ -112,7 +124,7 @@
   }
 
   .profile__info-name {
-    max-width: 282px;
+    max-width: 190px;
     min-width: 190px;
     margin: 0px;
 
@@ -135,7 +147,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 5px;
+    line-height: 1;
     text-align: center;
     color: #fff;
   }

@@ -5,7 +5,7 @@ const editForm = document.querySelector("#editForm");
 const addForm = document.querySelector("#addForm");
 
 function openPopup() {
-  let popup = document.querySelector(".popupedit");
+  const popup = document.querySelector(".popupedit");
 
   popup.classList.add("popup__opened");
 
@@ -14,7 +14,7 @@ function openPopup() {
 }
 
 function closePopup() {
-  let popup = document.querySelector(".popupedit");
+  const popup = document.querySelector(".popupedit");
 
   popup.classList.remove("popup__opened");
 }
@@ -22,16 +22,16 @@ function closePopup() {
 editButton.addEventListener("click", openPopup);
 closeButton.addEventListener("click", closePopup);
 
-let formElement = document.querySelector("#editForm");
+const formElement = document.querySelector("#editForm");
 
 function handleProfileSubmit(evt) {
   evt.preventDefault();
 
-  let nameInput = document.querySelector("#name").value;
-  let aboutInput = document.querySelector("#about").value;
+  const nameInput = document.querySelector("#name").value;
+  const aboutInput = document.querySelector("#about").value;
 
-  let userName = document.querySelector(".profile__info-name");
-  let userAbout = document.querySelector(".profile__info-about");
+  const userName = document.querySelector(".profile__info-name");
+  const userAbout = document.querySelector(".profile__info-about");
 
   userName.textContent = nameInput;
   userAbout.textContent = aboutInput;
@@ -47,7 +47,7 @@ const addButton = document.querySelector(".profile__addButton");
 const closeAddButton = document.querySelector("#closeAddButton");
 
 function openAddPopup() {
-  let popup = document.querySelector(".popupPlace");
+  const popup = document.querySelector(".popupPlace");
   popup.classList.add("popup__opened");
 
   const form = popup.querySelector(".popup__form");
@@ -55,7 +55,7 @@ function openAddPopup() {
 }
 
 function closeAddPopup() {
-  let popup = document.querySelector(".popupPlace");
+  const popup = document.querySelector(".popupPlace");
 
   popup.classList.remove("popup__opened");
 }
@@ -158,7 +158,7 @@ function openPhotoFrame(imageSrc, imageAlt, titleText) {
 }
 
 function closePhotoFrame() {
-  let photoFrame = document.querySelector(".photoFrame");
+  const photoFrame = document.querySelector(".photoFrame");
 
   photoFrame.classList.remove("photoFrame__opened");
 }
