@@ -1,8 +1,11 @@
-const editButton = document.querySelector(".profile__editButton");
-const closeButton = document.querySelector(".popup__close-button");
-
 const editForm = document.querySelector("#editForm");
 const addForm = document.querySelector("#addForm");
+
+const editButton = document.querySelector(".profile__editButton");
+const closeButton = document.querySelector(".popup__close-button");
+const addButton = document.querySelector(".profile__addButton");
+const closeAddButton = document.querySelector("#closeAddButton");
+const photoFrameCloseButton = document.querySelector("#closePhotoButton");
 
 function openPopup() {
   const popup = document.querySelector(".popupedit");
@@ -25,6 +28,49 @@ function closePopup() {
 editButton.addEventListener("click", openPopup);
 closeButton.addEventListener("click", closePopup);
 
+function openAddPopup() {
+  const popup = document.querySelector(".popupPlace");
+  popup.classList.add("popup__opened");
+
+  const form = popup.querySelector(".popup__form");
+  toggleButtonState(form);
+  document.addEventListener("keydown", handleEscClose);
+}
+
+function closeAddPopup() {
+  const popup = document.querySelector(".popupPlace");
+
+  popup.classList.remove("popup__opened");
+  document.removeEventListener("keydown", handleEscClose);
+}
+
+addButton.addEventListener("click", openAddPopup);
+closeAddButton.addEventListener("click", closeAddPopup);
+
+function openPhotoFrame(imageSrc, imageAlt, titleText) {
+  const photoFrame = document.querySelector(".photoFrame");
+  const photoImage = photoFrame.querySelector(".photoFrame__image");
+  const photoText = photoFrame.querySelector(".photoFrame__text");
+
+  photoImage.src = imageSrc;
+  photoImage.alt = imageAlt;
+  photoText.textContent = titleText;
+
+  photoFrame.classList.add("photoFrame__opened");
+  document.addEventListener("keydown", handleEscClose);
+}
+
+function closePhotoFrame() {
+  const photoFrame = document.querySelector(".photoFrame");
+
+  photoFrame.classList.remove("photoFrame__opened");
+  document.addEventListener("keydown", handleEscClose);
+}
+
+photoFrameCloseButton.addEventListener("click", closePhotoFrame);
+
+//////////////////////////////////////////////////
+
 const formElement = document.querySelector("#editForm");
 
 function handleProfileSubmit(evt) {
@@ -45,28 +91,6 @@ function handleProfileSubmit(evt) {
 }
 
 formElement.addEventListener("submit", handleProfileSubmit);
-
-const addButton = document.querySelector(".profile__addButton");
-const closeAddButton = document.querySelector("#closeAddButton");
-
-function openAddPopup() {
-  const popup = document.querySelector(".popupPlace");
-  popup.classList.add("popup__opened");
-
-  const form = popup.querySelector(".popup__form");
-  toggleButtonState(form);
-  document.addEventListener("keydown", handleEscClose);
-}
-
-function closeAddPopup() {
-  const popup = document.querySelector(".popupPlace");
-
-  popup.classList.remove("popup__opened");
-  document.removeEventListener("keydown", handleEscClose);
-}
-
-addButton.addEventListener("click", openAddPopup);
-closeAddButton.addEventListener("click", closeAddPopup);
 
 const initialCards = [
   {
@@ -144,30 +168,6 @@ function likeButtonAction(event) {
   } else {
     likeButtonIcon.src = "./images/Content-Card-LikeButtonActive.svg";
   }
-}
-
-const photoFrameCloseButton = document.querySelector("#closePhotoButton");
-
-photoFrameCloseButton.addEventListener("click", closePhotoFrame);
-
-function openPhotoFrame(imageSrc, imageAlt, titleText) {
-  const photoFrame = document.querySelector(".photoFrame");
-  const photoImage = photoFrame.querySelector(".photoFrame__image");
-  const photoText = photoFrame.querySelector(".photoFrame__text");
-
-  photoImage.src = imageSrc;
-  photoImage.alt = imageAlt;
-  photoText.textContent = titleText;
-
-  photoFrame.classList.add("photoFrame__opened");
-  document.addEventListener("keydown", handleEscClose);
-}
-
-function closePhotoFrame() {
-  const photoFrame = document.querySelector(".photoFrame");
-
-  photoFrame.classList.remove("photoFrame__opened");
-  document.addEventListener("keydown", handleEscClose);
 }
 
 function addNewCard(event) {
