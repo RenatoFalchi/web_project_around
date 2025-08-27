@@ -51,28 +51,6 @@
           </button>
         </section>
 
-        <template id="card-template">
-          <div class="gallery__grid-card">
-            <img class="gallery__grid-cardImage" alt="" />
-            <h2 class="gallery__grid-cardText"></h2>
-            <button class="gallery__grid-cardLikeButton">
-              <img
-                src="./images/Content-Card-LikeButton.svg"
-                class="gallery__grid-cardLikeButtonIcon"
-                alt="Botão de curtir"
-                id="likeButtonIcon"
-              />
-            </button>
-            <button class="gallery__grid-cardDeleteButton">
-              <img
-                src="./images/Content-Card-DeleteButton.svg"
-                class="gallery__grid-cardDeleteButtonIcon"
-                alt="Botão de deletar"
-              />
-            </button>
-          </div>
-        </template>
-
         <section class="gallery">
           <div class="gallery__grid"></div>
         </section>
@@ -190,8 +168,38 @@
           <h2 class="photoFrame__text">Vale de Yosemite</h2>
         </div>
       </section>
+      <template class="card-template" id="card-template">
+        <div class="gallery__grid-card">
+          <img class="gallery__grid-cardImage" alt="" />
+          <h2 class="gallery__grid-cardText"></h2>
+          <button class="gallery__grid-cardLikeButton">
+            <img
+              src="./images/Content-Card-LikeButton.svg"
+              class="gallery__grid-cardLikeButtonIcon"
+              alt="Botão de curtir"
+              id="likeButtonIcon"
+            />
+          </button>
+          <button class="gallery__grid-cardDeleteButton">
+            <img
+              src="./images/Content-Card-DeleteButton.svg"
+              class="gallery__grid-cardDeleteButtonIcon"
+              alt="Botão de deletar"
+            />
+          </button>
+        </div>
+      </template>
     </div>
-    <script type="" src="./scripts/validate.js"></script>
+    <!-- LEMBRAR DO TYUPE MODULE  LEMBRAR DO TYUPE MODULE
+      LEMBRAR DO TYUPE MODULE LEMBRAR DO TYUPE MODULE
+       LEMBRAR DO TYUPE MODULE LEMBRAR DO TYUPE MODULE
+        LEMBRAR DO TYUPE MODULE LEMBRAR DO TYUPE MODULE
+         LEMBRAR DO TYUPE MODULE LEMBRAR DO TYUPE MODULE
+          LEMBRAR DO TYUPE MODULE LEMBRAR DO TYUPE MODULE
+           LEMBRAR DO TYUPE MODULE LEMBRAR DO TYUPE MODULE
+            LEMBRAR DO TYUPE MODULE LEMBRAR DO TYUPE MODULE -->
+    <script type="" src="./scripts/FormValidator.js"></script>
+    <script type="module" src="./scripts/Card.js"></script>
     <script type="" src="./scripts/index.js"></script>
   </body>
 </html>

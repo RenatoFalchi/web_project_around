@@ -69,7 +69,7 @@ function closePhotoFrame() {
 
 photoFrameCloseButton.addEventListener("click", closePhotoFrame);
 
-//////////////////////////////////////////////////
+//////////////////////////PROFILE CHANGES////////////////////////
 
 const formElement = document.querySelector("#editForm");
 
@@ -91,6 +91,8 @@ function handleProfileSubmit(evt) {
 }
 
 formElement.addEventListener("submit", handleProfileSubmit);
+
+//////////////////////CARD CREATION CODE///////////////////////////
 
 const initialCards = [
   {
@@ -170,6 +172,11 @@ function likeButtonAction(event) {
   }
 }
 
+function deleteCard(event) {
+  const cardElement = event.currentTarget.closest(".gallery__grid-card");
+  cardElement.remove();
+}
+
 function addNewCard(event) {
   event.preventDefault();
 
@@ -192,8 +199,3 @@ function addNewCard(event) {
 }
 
 addForm.addEventListener("submit", addNewCard);
-
-function deleteCard(event) {
-  const cardElement = event.currentTarget.closest(".gallery__grid-card");
-  cardElement.remove();
-}
