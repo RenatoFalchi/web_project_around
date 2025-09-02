@@ -1,6 +1,38 @@
-const editForm = document.querySelector("#editForm");
-const addForm = document.querySelector("#addForm");
+import Card from "./Card.js";
+import { handleProfileSubmit } from "./utils.js";
 
+const initialCards = [
+  {
+    name: "Vale de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
+  },
+  {
+    name: "Montanhas Carecas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
+  },
+  {
+    name: "Parque Nacional da Vanoise ",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
+  },
+];
+
+////////////////////REVISADO
+
+const galleryGrid = document.querySelector(".gallery__grid");
+
+///////////////////NÃO REVISADO
 const editButton = document.querySelector(".profile__editButton");
 const closeButton = document.querySelector(".popup__close-button");
 const addButton = document.querySelector(".profile__addButton");
@@ -47,7 +79,7 @@ function closeAddPopup() {
 addButton.addEventListener("click", openAddPopup);
 closeAddButton.addEventListener("click", closeAddPopup);
 
-function openPhotoFrame(imageSrc, imageAlt, titleText) {
+/* function openPhotoFrame(imageSrc, imageAlt, titleText) {
   const photoFrame = document.querySelector(".photoFrame");
   const photoImage = photoFrame.querySelector(".photoFrame__image");
   const photoText = photoFrame.querySelector(".photoFrame__text");
@@ -58,7 +90,7 @@ function openPhotoFrame(imageSrc, imageAlt, titleText) {
 
   photoFrame.classList.add("photoFrame__opened");
   document.addEventListener("keydown", handleEscClose);
-}
+} */
 
 function closePhotoFrame() {
   const photoFrame = document.querySelector(".photoFrame");
@@ -69,59 +101,64 @@ function closePhotoFrame() {
 
 photoFrameCloseButton.addEventListener("click", closePhotoFrame);
 
-//////////////////////////PROFILE CHANGES////////////////////////
+///////////////////ADICIONAR NOVO CARTÃO / CARTÕES INICIAIS - REVISADO
 
-const formElement = document.querySelector("#editForm");
+function addNewCard(event) {
+  event.preventDefault();
 
-function handleProfileSubmit(evt) {
-  evt.preventDefault();
+  const placeTitle = document.querySelector("#placeTitle").value;
+  const placeImage = document.querySelector("#placeImage").value;
 
-  const nameInput = document.querySelector("#name").value;
-  const aboutInput = document.querySelector("#about").value;
+  const card = new Card(
+    {
+      name: placeTitle,
+      link: placeImage,
+    },
+    ".card-template"
+  );
 
-  const userName = document.querySelector(".profile__info-name");
-  const userAbout = document.querySelector(".profile__info-about");
+  initialCards.unshift(card);
 
-  userName.textContent = nameInput;
-  userAbout.textContent = aboutInput;
+  const cardElement = card.generateCard();
+  galleryGrid.prepend(cardElement);
 
-  closePopup();
+  closeAddPopup();
 
-  editForm.reset();
+  addForm.reset();
 }
 
-formElement.addEventListener("submit", handleProfileSubmit);
+initialCards.forEach((data) => {
+  const card = new Card(data, ".card-template");
+  const cardElement = card.generateCard();
+  galleryGrid.appendChild(cardElement);
+});
+
+///////LISTENERS PRONTOS PARA IR PARA O UTILS.JS
+
+addForm.addEventListener("submit", addNewCard);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 //////////////////////CARD CREATION CODE///////////////////////////
-
-const initialCards = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-  {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-  },
-  {
-    name: "Parque Nacional da Vanoise ",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-  },
-];
-
-const galleryGrid = document.querySelector(".gallery__grid");
+/* 
 const cardTemplate = document.querySelector("#card-template").content;
 
 function createCard(cardData) {
@@ -176,26 +213,4 @@ function deleteCard(event) {
   const cardElement = event.currentTarget.closest(".gallery__grid-card");
   cardElement.remove();
 }
-
-function addNewCard(event) {
-  event.preventDefault();
-
-  const placeTitle = document.querySelector("#placeTitle").value;
-  const placeImage = document.querySelector("#placeImage").value;
-
-  const newCard = {
-    name: placeTitle,
-    link: placeImage,
-  };
-
-  initialCards.unshift(newCard);
-
-  const newCardElement = createCard(newCard);
-  galleryGrid.prepend(newCardElement);
-
-  closeAddPopup();
-
-  addForm.reset();
-}
-
-addForm.addEventListener("submit", addNewCard);
+ */

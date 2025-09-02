@@ -1,33 +1,6 @@
-const galleryGrid = document.querySelector(".gallery__grid");
+import { handleEscClose } from "./utils.js";
 
-const initialCards = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-  {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-  },
-  {
-    name: "Parque Nacional da Vanoise ",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-  },
-];
-
-class Card {
+export default class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;
@@ -61,6 +34,19 @@ class Card {
     cardElement.remove();
   }
 
+  _openPhotoFrame() {
+    const photoFrame = document.querySelector(".photoFrame");
+    const photoImage = photoFrame.querySelector(".photoFrame__image");
+    const photoText = photoFrame.querySelector(".photoFrame__text");
+
+    photoImage.src = this._link;
+    photoImage.alt = this._name;
+    photoText.textContent = this._name;
+
+    photoFrame.classList.add("photoFrame__opened");
+    document.addEventListener("keydown", handleEscClose);
+  }
+
   _setEventListeners() {
     this._element
       .querySelector(".gallery__grid-cardDeleteButton")
@@ -68,6 +54,11 @@ class Card {
     this._element
       .querySelector(".gallery__grid-cardLikeButton")
       .addEventListener("click", this._likeButtonAction);
+    this._element
+      .querySelector(".gallery__grid-cardImage")
+      .addEventListener("click", () => {
+        this._openPhotoFrame();
+      });
   }
 
   generateCard() {
@@ -80,9 +71,3 @@ class Card {
     return this._element;
   }
 }
-
-initialCards.forEach((data) => {
-  const card = new Card(data, ".card-template");
-  const cardElement = card.generateCard();
-  galleryGrid.appendChild(cardElement);
-});

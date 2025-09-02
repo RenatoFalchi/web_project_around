@@ -50,18 +50,6 @@ popups.forEach((popup) => {
   });
 });
 
-function handleEscClose(event) {
-  if (event.key === "Escape") {
-    const openedPopup = document.querySelector(".popup__opened");
-    const openedPhotoFrame = document.querySelector(".photoFrame__opened");
-    if (openedPopup || openedPhotoFrame) {
-      closePopup(openedPopup);
-      closeAddPopup(openedPopup);
-      closePhotoFrame(openedPopup);
-    }
-  }
-}
-
 enableValidation({
   formSelector: ".popup__form",
   inputSelector: ".popup__form-fieldsetInput",
