@@ -1,7 +1,4 @@
-/* openPopup;
-closePopup;
-
-eventListeners; */
+export { handleProfileSubmit, handleEscClose, openPopup, closePopup, addPopup };
 
 const formSubmitEditProfile = document.querySelector("#editForm");
 
@@ -17,30 +14,63 @@ function handleProfileSubmit(event) {
   userName.textContent = nameInput;
   userAbout.textContent = aboutInput;
 
-  closePopup();
+  closePopup(editPopup);
 
-  editForm.reset();
+  formSubmitEditProfile.reset();
 }
 
 formSubmitEditProfile.addEventListener("submit", handleProfileSubmit);
+//
 
+const editButton = document.querySelector(".profile__editButton");
+const addButton = document.querySelector(".profile__addButton");
+const editPopup = document.querySelector(".popupedit");
+const addPopup = document.querySelector(".popupPlace");
+const closeButtons = document.querySelectorAll(".popup__close-button");
+
+function openPopup(popup) {
+  popup.classList.add("popup__opened");
+
+  const form = popup.querySelector(".popup__form");
+  toggleButtonState(form);
+  document.addEventListener("keydown", handleEscClose);
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup__opened");
+
+  document.removeEventListener("keydown", handleEscClose);
+}
+
+editButton.addEventListener("click", () => {
+  openPopup(editPopup);
+});
+addButton.addEventListener("click", () => {
+  openPopup(addPopup);
+});
+
+closeButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const popup = event.currentTarget.closest(".popup");
+    closePopup(popup);
+  });
+});
+//
 function handleEscClose(event) {
   if (event.key === "Escape") {
     const openedPopup = document.querySelector(".popup__opened");
-    const openedPhotoFrame = document.querySelector(".photoFrame__opened");
-    if (openedPopup || openedPhotoFrame) {
-      //////////////////////LEMBRAR DE ALTERAR ISSO CONFORME FUNÇÕES DE CLOSE
-      //////////////////////LEMBRAR DE ALTERAR ISSO CONFORME FUNÇÕES DE CLOSE
-      //////////////////////LEMBRAR DE ALTERAR ISSO CONFORME FUNÇÕES DE CLOSE
-      //////////////////////LEMBRAR DE ALTERAR ISSO CONFORME FUNÇÕES DE CLOSE
-      //////////////////////LEMBRAR DE ALTERAR ISSO CONFORME FUNÇÕES DE CLOSE
-      //////////////////////LEMBRAR DE ALTERAR ISSO CONFORME FUNÇÕES DE CLOSE
-      //////////////////////LEMBRAR DE ALTERAR ISSO CONFORME FUNÇÕES DE CLOSE
+    if (openedPopup) {
       closePopup(openedPopup);
-      closeAddPopup(openedPopup);
-      closePhotoFrame(openedPopup);
     }
   }
 }
 
-export { handleProfileSubmit, handleEscClose };
+const popups = document.querySelectorAll(".popup");
+
+popups.forEach((popup) => {
+  popup.addEventListener("click", (event) => {
+    if (event.target === popup) {
+      closePopup(popup);
+    }
+  });
+});

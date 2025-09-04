@@ -1,5 +1,6 @@
 import Card from "./Card.js";
-import { handleProfileSubmit } from "./utils.js";
+import { openPopup, closePopup, addPopup } from "./utils.js";
+const galleryGrid = document.querySelector(".gallery__grid");
 
 const initialCards = [
   {
@@ -28,80 +29,13 @@ const initialCards = [
   },
 ];
 
-////////////////////REVISADO
+initialCards.forEach((data) => {
+  const card = new Card(data, ".card-template");
+  const cardElement = card.generateCard();
+  galleryGrid.appendChild(cardElement);
+});
 
-const galleryGrid = document.querySelector(".gallery__grid");
-
-///////////////////NÃO REVISADO
-const editButton = document.querySelector(".profile__editButton");
-const closeButton = document.querySelector(".popup__close-button");
-const addButton = document.querySelector(".profile__addButton");
-const closeAddButton = document.querySelector("#closeAddButton");
-const photoFrameCloseButton = document.querySelector("#closePhotoButton");
-
-function openPopup() {
-  const popup = document.querySelector(".popupedit");
-
-  popup.classList.add("popup__opened");
-
-  const form = popup.querySelector(".popup__form");
-  toggleButtonState(form);
-  document.addEventListener("keydown", handleEscClose);
-}
-
-function closePopup() {
-  const popup = document.querySelector(".popupedit");
-
-  popup.classList.remove("popup__opened");
-
-  document.removeEventListener("keydown", handleEscClose);
-}
-
-editButton.addEventListener("click", openPopup);
-closeButton.addEventListener("click", closePopup);
-
-function openAddPopup() {
-  const popup = document.querySelector(".popupPlace");
-  popup.classList.add("popup__opened");
-
-  const form = popup.querySelector(".popup__form");
-  toggleButtonState(form);
-  document.addEventListener("keydown", handleEscClose);
-}
-
-function closeAddPopup() {
-  const popup = document.querySelector(".popupPlace");
-
-  popup.classList.remove("popup__opened");
-  document.removeEventListener("keydown", handleEscClose);
-}
-
-addButton.addEventListener("click", openAddPopup);
-closeAddButton.addEventListener("click", closeAddPopup);
-
-/* function openPhotoFrame(imageSrc, imageAlt, titleText) {
-  const photoFrame = document.querySelector(".photoFrame");
-  const photoImage = photoFrame.querySelector(".photoFrame__image");
-  const photoText = photoFrame.querySelector(".photoFrame__text");
-
-  photoImage.src = imageSrc;
-  photoImage.alt = imageAlt;
-  photoText.textContent = titleText;
-
-  photoFrame.classList.add("photoFrame__opened");
-  document.addEventListener("keydown", handleEscClose);
-} */
-
-function closePhotoFrame() {
-  const photoFrame = document.querySelector(".photoFrame");
-
-  photoFrame.classList.remove("photoFrame__opened");
-  document.addEventListener("keydown", handleEscClose);
-}
-
-photoFrameCloseButton.addEventListener("click", closePhotoFrame);
-
-///////////////////ADICIONAR NOVO CARTÃO / CARTÕES INICIAIS - REVISADO
+const formSubmitAddForm = document.querySelector("#addForm");
 
 function addNewCard(event) {
   event.preventDefault();
@@ -122,40 +56,76 @@ function addNewCard(event) {
   const cardElement = card.generateCard();
   galleryGrid.prepend(cardElement);
 
-  closeAddPopup();
+  closePopup(addPopup);
 
-  addForm.reset();
+  formSubmitAddForm.reset();
 }
 
-initialCards.forEach((data) => {
-  const card = new Card(data, ".card-template");
-  const cardElement = card.generateCard();
-  galleryGrid.appendChild(cardElement);
-});
+formSubmitAddForm.addEventListener("submit", addNewCard);
 
-///////LISTENERS PRONTOS PARA IR PARA O UTILS.JS
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-addForm.addEventListener("submit", addNewCard);
+/* function openAddPopup() {
+  const popup = document.querySelector(".popupPlace");
+  popup.classList.add("popup__opened");
+
+  const form = popup.querySelector(".popup__form");
+  toggleButtonState(form);
+  document.addEventListener("keydown", handleEscClose);
+}
+
+function closeAddPopup() {
+  const popup = document.querySelector(".popupPlace");
+
+  popup.classList.remove("popup__opened");
+  document.removeEventListener("keydown", handleEscClose);
+}
+
+addButton.addEventListener("click", openAddPopup);
+closeAddButton.addEventListener("click", closeAddPopup); */
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* function openPhotoFrame(imageSrc, imageAlt, titleText) {
+  const photoFrame = document.querySelector(".photoFrame");
+  const photoImage = photoFrame.querySelector(".photoFrame__image");
+  const photoText = photoFrame.querySelector(".photoFrame__text");
+
+  photoImage.src = imageSrc;
+  photoImage.alt = imageAlt;
+  photoText.textContent = titleText;
+
+  photoFrame.classList.add("photoFrame__opened");
+  document.addEventListener("keydown", handleEscClose);
+} */
+
+/*   const photoFrameCloseButton = document.querySelector("#closePhotoButton");
+
+function closePhotoFrame() {
+  const photoFrame = document.querySelector(".photoFrame");
+
+  photoFrame.classList.remove("photoFrame__opened");
+  document.addEventListener("keydown", handleEscClose);
+}
+
+photoFrameCloseButton.addEventListener("click", closePhotoFrame);
+ */
 
 //////////////////////CARD CREATION CODE///////////////////////////
 /* 
@@ -213,4 +183,38 @@ function deleteCard(event) {
   const cardElement = event.currentTarget.closest(".gallery__grid-card");
   cardElement.remove();
 }
+
  */
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//////////////BACKUP
+/* 
+function openPopup() {
+  const popup = document.querySelector(".popupedit");
+
+  popup.classList.add("popup__opened");
+
+  const form = popup.querySelector(".popup__form");
+  toggleButtonState(form);
+  document.addEventListener("keydown", handleEscClose);
+}
+
+function closePopup() {
+  const popup = document.querySelector(".popupedit");
+
+  popup.classList.remove("popup__opened");
+
+  document.removeEventListener("keydown", handleEscClose);
+}
+
+editButton.addEventListener("click", openPopup);
+closeButton.addEventListener("click", closePopup); */

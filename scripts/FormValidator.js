@@ -38,18 +38,6 @@ forms.forEach((form) => {
   toggleButtonState(form);
 });
 
-const popups = document.querySelectorAll(".popup");
-
-popups.forEach((popup) => {
-  popup.addEventListener("click", (event) => {
-    if (event.target === popup) {
-      closePopup(popup);
-      closeAddPopup(popup);
-      closePhotoFrame(popup);
-    }
-  });
-});
-
 enableValidation({
   formSelector: ".popup__form",
   inputSelector: ".popup__form-fieldsetInput",

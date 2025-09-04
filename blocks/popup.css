@@ -26,10 +26,6 @@
   right: 0;
 }
 
-.popup__opened {
-  display: flex;
-}
-
 .popup__container {
   position: relative;
   background-color: #fff;
@@ -180,7 +176,7 @@
   right: 0;
 }
 
-.photoFrame__opened {
+.popup__opened {
   display: flex;
 }
 

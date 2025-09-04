@@ -43,7 +43,7 @@ export default class Card {
     photoImage.alt = this._name;
     photoText.textContent = this._name;
 
-    photoFrame.classList.add("photoFrame__opened");
+    photoFrame.classList.add("popup__opened");
     document.addEventListener("keydown", handleEscClose);
   }
 
