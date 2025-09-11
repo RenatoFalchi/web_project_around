@@ -1,8 +1,15 @@
-export { handleProfileSubmit, handleEscClose, openPopup, closePopup, addPopup };
+export {
+  handleProfileSubmit,
+  handleEscClose,
+  setEditFormListener,
+  openPopup,
+  closePopup,
+  addPopup,
+};
 
 const formSubmitEditProfile = document.querySelector("#editForm");
 
-function handleProfileSubmit(event) {
+function handleProfileSubmit(event, validator) {
   event.preventDefault();
 
   const nameInput = document.querySelector("#name").value;
@@ -17,10 +24,14 @@ function handleProfileSubmit(event) {
   closePopup(editPopup);
 
   formSubmitEditProfile.reset();
+  validator.resetValidation();
 }
 
-formSubmitEditProfile.addEventListener("submit", handleProfileSubmit);
-//
+function setEditFormListener(validator) {
+  formSubmitEditProfile.addEventListener("submit", (event) => {
+    handleProfileSubmit(event, validator);
+  });
+}
 
 const editButton = document.querySelector(".profile__editButton");
 const addButton = document.querySelector(".profile__addButton");
@@ -32,7 +43,6 @@ function openPopup(popup) {
   popup.classList.add("popup__opened");
 
   const form = popup.querySelector(".popup__form");
-  toggleButtonState(form);
   document.addEventListener("keydown", handleEscClose);
 }
 
