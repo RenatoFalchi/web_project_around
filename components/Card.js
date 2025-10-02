@@ -1,4 +1,4 @@
-import { handleEscClose } from "./utils.js";
+import { handleEscClose } from "../scripts/utils.js";
 
 export default class Card {
   constructor(data, cardSelector) {

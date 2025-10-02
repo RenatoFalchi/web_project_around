@@ -1,4 +1,4 @@
-import Card from "./Card.js";
+import Card from "../components/Card.js";
 import {
   openPopup,
   closePopup,
@@ -6,7 +6,7 @@ import {
   handleProfileSubmit,
   setEditFormListener,
 } from "./utils.js";
-import FormValidator from "./FormValidator.js";
+import FormValidator from "../components/FormValidator.js";
 const galleryGrid = document.querySelector(".gallery__grid");
 
 const initialCards = [
