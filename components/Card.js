@@ -1,10 +1,11 @@
-import { handleEscClose } from "../scripts/utils.js";
+/* import { handleEscClose } from "../scripts/utils.js"; */
 
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -54,11 +55,16 @@ export default class Card {
     this._element
       .querySelector(".gallery__grid-cardLikeButton")
       .addEventListener("click", this._likeButtonAction);
-    this._element
+    /* this._element
       .querySelector(".gallery__grid-cardImage")
       .addEventListener("click", () => {
         this._openPhotoFrame();
-      });
+      }); */
+    this._element
+      .querySelector(".gallery__grid-cardImage")
+      .addEventListener("click", () =>
+        this._handleCardClick(this._name, this._link)
+      );
   }
 
   generateCard() {
