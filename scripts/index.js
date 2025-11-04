@@ -1,8 +1,29 @@
+import Popup from "../components/Popup.js";
+const editButton = document.querySelector(".profile__editButton");
+editButton.addEventListener("click", () => {
+  editPopup.open();
+});
+
+const editPopup = new Popup(".popupedit");
+editPopup.setEventListeners();
+
+const addButton = document.querySelector(".profile__addButton");
+addButton.addEventListener("click", () => {
+  addPopup.open();
+});
+
+const addPopup = new Popup(".popupPlace");
+addPopup.setEventListeners();
+
+/* import PopupWithImage from "../components/PopupWithImage.js";
+const placePopup = new PopupWithImage(".photoFrame"); */
+
+//
 import Card from "../components/Card.js";
 import {
+  /* closePopup,
   openPopup,
-  closePopup,
-  addPopup,
+  addPopup, */
   handleProfileSubmit,
   setEditFormListener,
 } from "./utils.js";

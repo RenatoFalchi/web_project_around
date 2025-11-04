@@ -1,4 +1,4 @@
-/* import { handleEscClose } from "../scripts/utils.js"; */
+/* import { handleEscClose } from "../scripts/utils.js"; */ //REMOVER PARA ADICIONAR O LISTENER COMENTADO
 
 export default class Card {
   constructor(data, cardSelector, handleCardClick) {
@@ -55,16 +55,16 @@ export default class Card {
     this._element
       .querySelector(".gallery__grid-cardLikeButton")
       .addEventListener("click", this._likeButtonAction);
-    /* this._element
+    this._element
       .querySelector(".gallery__grid-cardImage")
       .addEventListener("click", () => {
         this._openPhotoFrame();
-      }); */
-    this._element
+      });
+    /* this._element
       .querySelector(".gallery__grid-cardImage")
       .addEventListener("click", () =>
         this._handleCardClick(this._name, this._link)
-      );
+      ); */
   }
 
   generateCard() {

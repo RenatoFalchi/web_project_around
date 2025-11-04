@@ -1,10 +1,10 @@
 export {
   handleProfileSubmit,
-  handleEscClose,
+  /*  handleEscClose, */
   setEditFormListener,
-  openPopup,
+  /* openPopup,
   closePopup,
-  addPopup,
+  addPopup, */
 };
 
 const formSubmitEditProfile = document.querySelector("#editForm");
@@ -33,49 +33,49 @@ function setEditFormListener(validator) {
   });
 }
 
-const editButton = document.querySelector(".profile__editButton");
-const addButton = document.querySelector(".profile__addButton");
-const editPopup = document.querySelector(".popupedit");
-const addPopup = document.querySelector(".popupPlace");
+/* const editButton = document.querySelector(".profile__editButton");
+const addButton = document.querySelector(".profile__addButton"); */
+/* const editPopup = document.querySelector(".popupedit");
+const addPopup = document.querySelector(".popupPlace"); */
 const closeButtons = document.querySelectorAll(".popup__close-button");
 
-function openPopup(popup) {
+/* function openPopup(popup) {
   popup.classList.add("popup__opened");
 
   const form = popup.querySelector(".popup__form");
   document.addEventListener("keydown", handleEscClose);
-}
+} */
 
-function closePopup(popup) {
+/* function closePopup(popup) {
   popup.classList.remove("popup__opened");
 
   document.removeEventListener("keydown", handleEscClose);
-}
+} */
 
-editButton.addEventListener("click", () => {
+/* editButton.addEventListener("click", () => {
   openPopup(editPopup);
 });
 addButton.addEventListener("click", () => {
   openPopup(addPopup);
-});
+}); */
 
-closeButtons.forEach((button) => {
+/* closeButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     const popup = event.currentTarget.closest(".popup");
     closePopup(popup);
   });
-});
+}); */
 //
-function handleEscClose(event) {
+/* function handleEscClose(event) {
   if (event.key === "Escape") {
     const openedPopup = document.querySelector(".popup__opened");
     if (openedPopup) {
       closePopup(openedPopup);
     }
   }
-}
+} */
 
-const popups = document.querySelectorAll(".popup");
+/* const popups = document.querySelectorAll(".popup");
 
 popups.forEach((popup) => {
   popup.addEventListener("click", (event) => {
@@ -83,7 +83,7 @@ popups.forEach((popup) => {
       closePopup(popup);
     }
   });
-});
+}); */
 
 //
 //
