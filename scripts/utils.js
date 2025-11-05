@@ -37,7 +37,7 @@ function setEditFormListener(validator) {
 const addButton = document.querySelector(".profile__addButton"); */
 /* const editPopup = document.querySelector(".popupedit");
 const addPopup = document.querySelector(".popupPlace"); */
-const closeButtons = document.querySelectorAll(".popup__close-button");
+/* const closeButtons = document.querySelectorAll(".popup__close-button"); */
 
 /* function openPopup(popup) {
   popup.classList.add("popup__opened");

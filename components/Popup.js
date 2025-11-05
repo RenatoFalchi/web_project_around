@@ -26,12 +26,6 @@ export default class Popup {
     }
   }
 
-  _handleOpenButton(evt) {
-    if (evt.target.classList.contains("profile__editButton")) {
-      this.open();
-    }
-  }
-
   _handleCloseButton(evt) {
     if (evt.target.classList.contains("popup__close-icon")) {
       this.close();
@@ -41,6 +35,5 @@ export default class Popup {
   setEventListeners() {
     this._popup.addEventListener("mousedown", this._handleOverlayClose);
     this._popup.addEventListener("click", this._handleCloseButton);
-    this._popup.addEventListener("click", this._handleOpenButton);
   }
 }

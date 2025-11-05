@@ -35,7 +35,7 @@ export default class Card {
     cardElement.remove();
   }
 
-  _openPhotoFrame() {
+  /* _openPhotoFrame() {
     const photoFrame = document.querySelector(".photoFrame");
     const photoImage = photoFrame.querySelector(".photoFrame__image");
     const photoText = photoFrame.querySelector(".photoFrame__text");
@@ -46,7 +46,7 @@ export default class Card {
 
     photoFrame.classList.add("popup__opened");
     document.addEventListener("keydown", handleEscClose);
-  }
+  } */
 
   _setEventListeners() {
     this._element
@@ -55,16 +55,16 @@ export default class Card {
     this._element
       .querySelector(".gallery__grid-cardLikeButton")
       .addEventListener("click", this._likeButtonAction);
-    this._element
+    /* this._element
       .querySelector(".gallery__grid-cardImage")
       .addEventListener("click", () => {
         this._openPhotoFrame();
-      });
-    /* this._element
+      }); */
+    this._element
       .querySelector(".gallery__grid-cardImage")
       .addEventListener("click", () =>
         this._handleCardClick(this._name, this._link)
-      ); */
+      );
   }
 
   generateCard() {

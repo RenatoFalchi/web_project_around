@@ -1,22 +1,29 @@
 import Popup from "../components/Popup.js";
-const editButton = document.querySelector(".profile__editButton");
-editButton.addEventListener("click", () => {
-  editPopup.open();
-});
+import PopupWithImage from "../components/PopupWithImage.js";
 
 const editPopup = new Popup(".popupedit");
 editPopup.setEventListeners();
 
+const addPopup = new Popup(".popupPlace");
+addPopup.setEventListeners();
+
+const placePopup = new PopupWithImage(".photoFrame");
+placePopup.setEventListeners();
+
+const handleCardClick = (name, link) => placePopup.open(name, link);
+
+const editButton = document.querySelector(".profile__editButton");
+editButton.addEventListener("click", () => {
+  editPopup.open();
+});
 const addButton = document.querySelector(".profile__addButton");
 addButton.addEventListener("click", () => {
   addPopup.open();
 });
-
-const addPopup = new Popup(".popupPlace");
-addPopup.setEventListeners();
-
-/* import PopupWithImage from "../components/PopupWithImage.js";
-const placePopup = new PopupWithImage(".photoFrame"); */
+/* const photoFrame = document.querySelector(".photoFrame");
+photoFrame.addEventListener("click", () => {
+  placePopup.open();
+}); */
 
 //
 import Card from "../components/Card.js";
@@ -58,7 +65,7 @@ const initialCards = [
 ];
 
 initialCards.forEach((data) => {
-  const card = new Card(data, ".card-template");
+  const card = new Card(data, ".card-template", handleCardClick);
   const cardElement = card.generateCard();
   galleryGrid.appendChild(cardElement);
 });
@@ -95,7 +102,8 @@ function addNewCard(event) {
       name: placeTitle,
       link: placeImage,
     },
-    ".card-template"
+    ".card-template",
+    handleCardClick
   );
 
   initialCards.unshift(card);
