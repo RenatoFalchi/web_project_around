@@ -1,13 +1,11 @@
-export {
-  handleProfileSubmit,
-  /*  handleEscClose, */
-  setEditFormListener,
-  /* openPopup,
+export /* handleProfileSubmit, */
+/*  handleEscClose, */
+/* setEditFormListener, */
+/* openPopup,
   closePopup,
-  addPopup, */
-};
+  addPopup, */ {};
 
-const formSubmitEditProfile = document.querySelector("#editForm");
+/* const formSubmitEditProfile = document.querySelector("#editForm");
 
 function handleProfileSubmit(event, validator) {
   event.preventDefault();
@@ -31,7 +29,7 @@ function setEditFormListener(validator) {
   formSubmitEditProfile.addEventListener("submit", (event) => {
     handleProfileSubmit(event, validator);
   });
-}
+} */
 
 /* const editButton = document.querySelector(".profile__editButton");
 const addButton = document.querySelector(".profile__addButton"); */

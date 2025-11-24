@@ -1,5 +1,5 @@
-import { handleProfileSubmit } from "../scripts/utils";
-import Popup from "./Popup.js";
+/* import { handleProfileSubmit } from "../scripts/utils";
+ */ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {

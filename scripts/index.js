@@ -1,8 +1,40 @@
 import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 const editPopup = new Popup(".popupedit");
 editPopup.setEventListeners();
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__info-name",
+  aboutSelector: ".profile__info-about",
+});
+
+const editPopupForm = new PopupWithForm(".popupedit", (formValues) => {
+  console.log("teste", formValues);
+  userInfo.setUserInfo({
+    name: formValues.name,
+    about: formValues.about,
+  });
+  editPopupForm.close();
+});
+editPopupForm.setEventListeners();
+
+const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
+  const newCard = new Card(
+    {
+      name: formValues.placeTitle,
+      link: formValues.placeImage,
+    },
+    ".card-template",
+    handleCardClick
+  );
+  const cardElement = newCard.generateCard();
+  galleryGrid.prepend(cardElement);
+  addCardPopup.close();
+});
+addCardPopup.setEventListeners();
 
 const addPopup = new Popup(".popupPlace");
 addPopup.setEventListeners();
@@ -14,6 +46,9 @@ const handleCardClick = (name, link) => placePopup.open(name, link);
 
 const editButton = document.querySelector(".profile__editButton");
 editButton.addEventListener("click", () => {
+  const currentUserInfo = userInfo.getUserInfo();
+  document.querySelector("#name").value = currentUserInfo.name;
+  document.querySelector("#about").value = currentUserInfo.about;
   editPopup.open();
 });
 const addButton = document.querySelector(".profile__addButton");
@@ -27,13 +62,12 @@ photoFrame.addEventListener("click", () => {
 
 //
 import Card from "../components/Card.js";
-import {
-  /* closePopup,
+import /* closePopup,
   openPopup,
   addPopup, */
-  handleProfileSubmit,
-  setEditFormListener,
-} from "./utils.js";
+/* handleProfileSubmit,
+  setEditFormListener, */
+"./utils.js";
 import FormValidator from "../components/FormValidator.js";
 const galleryGrid = document.querySelector(".gallery__grid");
 
@@ -87,11 +121,11 @@ const addFormValidator = new FormValidator(validationConfig, addForm);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
-setEditFormListener(editFormValidator);
+/* setEditFormListener(editFormValidator); */
 
 const formSubmitAddForm = document.querySelector("#addForm");
 
-function addNewCard(event) {
+/* function addNewCard(event) {
   event.preventDefault();
 
   const placeTitle = document.querySelector("#placeTitle").value;
@@ -117,4 +151,4 @@ function addNewCard(event) {
   addFormValidator.resetValidation();
 }
 
-formSubmitAddForm.addEventListener("submit", addNewCard);
+formSubmitAddForm.addEventListener("submit", addNewCard); */
