@@ -1,46 +1,124 @@
 # Tripleten web_project_around
 
-1 - Tripleten Around Page - Sprint 9 - Renato Falchi Correia de Oliveira
+Sprint 11 — Programação Orientada a Objetos e Refatoração
+1️⃣ — Projeto: Sprint 11 — Renato Falchi Correia de Oliveira
 
-2 - Projeto destinado ao desenvolvimento de um website responsivo utilizando as tecnologias de media queries, medidas proporcionais e grids.
-O projeto foi dimensionado para atuar em telas com larguras de 1280px, 1024px e 800px, até um mínimo de 320px.
+Este projeto dá continuidade ao desenvolvimento do Around The U.S., agora com foco em refatoração avançada, Programação Orientada a Objetos (OOP) e organização modular do código.
+A Sprint 11 introduz diversas novas classes, substituindo blocos de código procedurais por estruturas orientadas a objetos mais reutilizáveis, escaláveis e fáceis de manter.
 
-3 - Foi utilizado JavaScript para implantar as seguintes funcionalidades:
+2️⃣ — Objetivo do projeto
 
-Botão editar perfil → Abre um popup com formulário que permite alterar o nome e a descrição do perfil.
+Refatorar e modularizar a aplicação adicionando as seguintes funcionalidades por meio de classes dedicadas, cada uma responsável por uma parte específica da lógica:
 
-Botão adicionar local → Abre um popup com formulário que adiciona novos cards ao grid, exigindo nome e link da imagem.
+Criar e renderizar elementos na página usando a classe Section
 
-Botão deletar card → Cada card possui um botão de lixeira que remove o card ao ser clicado, reorganizando o grid.
+Gerenciar popups com a classe genérica Popup
 
-Botão de like → Cada card possui um botão de coração que alterna entre estado ativo e inativo.
+Criar popups especializados:
 
-PhotoFrame → Ao clicar na imagem de um card, abre-se um popup exibindo a imagem em tamanho ampliado (máximo de 75vh x 75vw) com legenda.
+PopupWithImage para exibir imagens ampliadas
 
-Validação de formulários → Implementada com feedback visual dinâmico, garantindo que os campos sejam preenchidos corretamente antes de permitir o envio.
+PopupWithForm para formulários
 
-Fechamento de popups → Agora os popups podem ser fechados clicando na sobreposição ou pressionando a tecla Escape, melhorando a usabilidade.
+Manipular dados do usuário com a classe UserInfo
 
-Reset de formulários → Após o envio, os formulários são limpos e o botão de salvar volta ao estado desabilitado.
+Conectar a classe Card aos popups usando o callback handleCardClick()
 
-4 - Confira o resultado:
-👉 Clique aqui para visualizar o projeto
+O resultado final é um projeto bem estruturado, com todas as funcionalidades encapsuladas, seguindo princípios de SRP (Single Responsibility Principle) e boas práticas de OOP.
 
-5 - Tecnologias utilizadas:
+3️⃣ — Funcionalidades implementadas com classes
+🧩 Classe Section
 
-HTML5 → Estrutura semântica do projeto.
+Responsável por renderizar listas de elementos na página.
 
-CSS3 → Estilização responsiva com grid, flexbox, media queries e medidas proporcionais.
+Recebe items (array) e renderer (callback) no construtor.
 
-JavaScript (ES6+) → Manipulação da DOM, eventos, popups e lógica de interação.
+Renderiza todos os elementos com renderItems().
 
-Programação Orientada a Objetos (OOP) → Criação da classe Card para geração dinâmica de elementos.
+Insere novos cards dinamicamente com addItem().
 
-Validação customizada de formulários → Implementada com a classe FormValidator.
+🪟 Classe Popup
 
-BEM (Block Element Modifier) → Metodologia para organização e escalabilidade do CSS.
+Classe base para todos os popups.
+Implementa:
 
-GitHub Pages → Hospedagem do projeto.
+open() e close()
 
-6 - Confira o resultado:
-https://renatofalchi.github.io/web_project_around/
+Fechamento via tecla Escape
+
+Fechamento ao clicar na sobreposição
+
+setEventListeners() para adicionar eventos globais ao popup
+
+🖼️ Classe PopupWithImage (herda Popup)
+
+Controla o popup de visualização de imagens.
+
+Sobrescreve open() para inserir imagem e legenda dinamicamente.
+
+📝 Classe PopupWithForm (herda Popup)
+
+Gerencia popups com formulários.
+
+Recebe callback de submit no construtor
+
+Implementa \_getInputValues() para coletar dados
+
+Adiciona evento de submit ao formulário
+
+Sobrescreve close() para limpar o formulário após envio
+
+👤 Classe UserInfo
+
+Responsável pelo gerenciamento de dados do usuário:
+
+Obtém informações do usuário com getUserInfo()
+
+Atualiza nome e ocupação com setUserInfo()
+
+Sincroniza dados exibidos na interface com o popup de edição
+
+🃏 Classe Card (refatorada)
+
+Agora recebe a função handleCardClick() no construtor.
+
+Ao clicar na imagem, abre o popup de visualização usando o popup de imagem.
+
+🔧 Outros requisitos atendidos
+
+Todo código orientado a objetos está isolado em arquivos próprios
+
+O arquivo index.js agora é responsável apenas pela criação das instâncias e addEventListeners
+
+Lógica repetitiva foi eliminada
+
+Componentes independentes se comunicam apenas via callbacks
+
+Código mais limpo, organizado e escalável
+
+4️⃣ — Tecnologias utilizadas
+
+HTML5
+Estrutura semântica da aplicação.
+
+CSS3
+Estilização com BEM, media queries, grid, flexbox e responsividade completa.
+
+JavaScript (ES6+)
+Manipulação de DOM, modularização e orientação a objetos.
+
+Programação Orientada a Objetos (OOP)
+Classes separadas por responsabilidade: Card, Section, Popup, PopupWithImage, PopupWithForm, UserInfo.
+
+Validação de formulários
+Mantida da sprint anterior via FormValidator.
+
+Webpack / caminho modular (caso use)
+Imports e organização de componentes.
+
+GitHub Pages
+Hospedagem da versão final do projeto.
+
+5️⃣ — Deploy do projeto
+
+🔗 https://renatofalchi.github.io/web_project_around/
