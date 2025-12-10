@@ -31,7 +31,8 @@ const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
     handleCardClick
   );
   const cardElement = newCard.generateCard();
-  galleryGrid.prepend(cardElement);
+  /* galleryGrid.prepend(cardElement); */
+  cardSection.addItem(cardElement); //CÓDIGO NOVO
   addCardPopup.close();
 });
 addCardPopup.setEventListeners();
@@ -98,11 +99,31 @@ const initialCards = [
   },
 ];
 
-initialCards.forEach((data) => {
+//
+
+import Section from "../components/Section.js";
+
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, ".card-template", handleCardClick);
+      const cardElement = card.generateCard();
+      cardSection.addItem(cardElement);
+    },
+  },
+  ".gallery__grid"
+);
+
+cardSection.renderItems();
+
+//
+
+/* initialCards.forEach((data) => {
   const card = new Card(data, ".card-template", handleCardClick);
   const cardElement = card.generateCard();
   galleryGrid.appendChild(cardElement);
-});
+}); */
 
 const validationConfig = {
   formSelector: ".popup__form",
