@@ -2,6 +2,9 @@ import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
 
 const editPopup = new Popup(".popupedit");
 editPopup.setEventListeners();
@@ -31,8 +34,7 @@ const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
     handleCardClick
   );
   const cardElement = newCard.generateCard();
-  /* galleryGrid.prepend(cardElement); */
-  cardSection.addItem(cardElement); //CÓDIGO NOVO
+  cardSection.addItem(cardElement);
   addCardPopup.close();
 });
 addCardPopup.setEventListeners();
@@ -56,20 +58,7 @@ const addButton = document.querySelector(".profile__addButton");
 addButton.addEventListener("click", () => {
   addPopup.open();
 });
-/* const photoFrame = document.querySelector(".photoFrame");
-photoFrame.addEventListener("click", () => {
-  placePopup.open();
-}); */
 
-//
-import Card from "../components/Card.js";
-import /* closePopup,
-  openPopup,
-  addPopup, */
-/* handleProfileSubmit,
-  setEditFormListener, */
-"./utils.js";
-import FormValidator from "../components/FormValidator.js";
 const galleryGrid = document.querySelector(".gallery__grid");
 
 const initialCards = [
@@ -99,10 +88,6 @@ const initialCards = [
   },
 ];
 
-//
-
-import Section from "../components/Section.js";
-
 const cardSection = new Section(
   {
     items: initialCards,
@@ -116,14 +101,6 @@ const cardSection = new Section(
 );
 
 cardSection.renderItems();
-
-//
-
-/* initialCards.forEach((data) => {
-  const card = new Card(data, ".card-template", handleCardClick);
-  const cardElement = card.generateCard();
-  galleryGrid.appendChild(cardElement);
-}); */
 
 const validationConfig = {
   formSelector: ".popup__form",
@@ -142,34 +119,5 @@ const addFormValidator = new FormValidator(validationConfig, addForm);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
-/* setEditFormListener(editFormValidator); */
 
 const formSubmitAddForm = document.querySelector("#addForm");
-
-/* function addNewCard(event) {
-  event.preventDefault();
-
-  const placeTitle = document.querySelector("#placeTitle").value;
-  const placeImage = document.querySelector("#placeImage").value;
-
-  const card = new Card(
-    {
-      name: placeTitle,
-      link: placeImage,
-    },
-    ".card-template",
-    handleCardClick
-  );
-
-  initialCards.unshift(card);
-
-  const cardElement = card.generateCard();
-  galleryGrid.prepend(cardElement);
-
-  closePopup(addPopup);
-
-  formSubmitAddForm.reset();
-  addFormValidator.resetValidation();
-}
-
-formSubmitAddForm.addEventListener("submit", addNewCard); */

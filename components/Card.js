@@ -1,5 +1,3 @@
-/* import { handleEscClose } from "../scripts/utils.js"; */ //REMOVER PARA ADICIONAR O LISTENER COMENTADO
-
 export default class Card {
   constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
@@ -35,19 +33,6 @@ export default class Card {
     cardElement.remove();
   }
 
-  /* _openPhotoFrame() {
-    const photoFrame = document.querySelector(".photoFrame");
-    const photoImage = photoFrame.querySelector(".photoFrame__image");
-    const photoText = photoFrame.querySelector(".photoFrame__text");
-
-    photoImage.src = this._link;
-    photoImage.alt = this._name;
-    photoText.textContent = this._name;
-
-    photoFrame.classList.add("popup__opened");
-    document.addEventListener("keydown", handleEscClose);
-  } */
-
   _setEventListeners() {
     this._element
       .querySelector(".gallery__grid-cardDeleteButton")
@@ -55,11 +40,6 @@ export default class Card {
     this._element
       .querySelector(".gallery__grid-cardLikeButton")
       .addEventListener("click", this._likeButtonAction);
-    /* this._element
-      .querySelector(".gallery__grid-cardImage")
-      .addEventListener("click", () => {
-        this._openPhotoFrame();
-      }); */
     this._element
       .querySelector(".gallery__grid-cardImage")
       .addEventListener("click", () =>
