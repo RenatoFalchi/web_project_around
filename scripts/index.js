@@ -24,13 +24,26 @@ const userInfo = new UserInfo({
 });
 
 const editPopupForm = new PopupWithForm(".popupedit", (formValues) => {
+  api
+    .updateUserInfo({ name: formValues.name, about: formValues.about })
+    .then((updatedUser) => {
+      userInfo.setUserInfo({
+        name: updatedUser.name,
+        about: updatedUser.about,
+      });
+      editPopupForm.close();
+    })
+    .catch((err) => console.log(err));
+});
+
+/* const editPopupForm = new PopupWithForm(".popupedit", (formValues) => {
   console.log("teste", formValues);
   userInfo.setUserInfo({
     name: formValues.name,
     about: formValues.about,
   });
   editPopupForm.close();
-});
+}); */
 editPopupForm.setEventListeners();
 
 const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
