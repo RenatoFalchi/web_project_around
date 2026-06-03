@@ -1,3 +1,4 @@
+import Api from "../components/Api.js";
 import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -5,6 +6,14 @@ import UserInfo from "../components/UserInfo.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
+
+const api = new Api({
+  baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
+  headers: {
+    authorization: "c658acda-adc7-49b7-9ee9-cbbb31f96c40",
+    "Content-Type": "application/json",
+  } /* ////////////////////////    PONTO DE ATENÇÃO PARA AS VIRGULAS //////////////////////////////////////////////////////////////////// */,
+});
 
 const editPopup = new Popup(".popupedit");
 editPopup.setEventListeners();
@@ -31,7 +40,7 @@ const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
       link: formValues.placeImage,
     },
     ".card-template",
-    handleCardClick
+    handleCardClick,
   );
   const cardElement = newCard.generateCard();
   cardSection.addItem(cardElement);
@@ -61,7 +70,7 @@ addButton.addEventListener("click", () => {
 
 const galleryGrid = document.querySelector(".gallery__grid");
 
-const initialCards = [
+/* const initialCards = [
   {
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
@@ -86,9 +95,9 @@ const initialCards = [
     name: "Lago di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
-];
+]; */
 
-const cardSection = new Section(
+/* const cardSection = new Section(
   {
     items: initialCards,
     renderer: (item) => {
@@ -97,10 +106,10 @@ const cardSection = new Section(
       cardSection.addItem(cardElement);
     },
   },
-  ".gallery__grid"
-);
+  ".gallery__grid",
+); */
 
-cardSection.renderItems();
+/* cardSection.renderItems(); */
 
 const validationConfig = {
   formSelector: ".popup__form",
@@ -121,3 +130,23 @@ editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
 const formSubmitAddForm = document.querySelector("#addForm");
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cardsData]) => {
+    userInfo.setUserInfo(userData);
+
+    const cardSection = new Section(
+      {
+        items: cardsData,
+        renderer: (item) => {
+          const card = new Card(item, ".card-template", handleCardClick);
+          const cardElement = card.generateCard();
+          cardSection.addItem(cardElement);
+        },
+      },
+      ".gallery__grid",
+    );
+    cardSection.renderItems();
+  })
+
+  .catch((err) => console.log(err));
