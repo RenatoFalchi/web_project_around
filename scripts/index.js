@@ -34,6 +34,25 @@ const editPopupForm = new PopupWithForm(".popupedit", (formValues) => {
 editPopupForm.setEventListeners();
 
 const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
+  api
+    .addCard({ name: formValues.placeTitle, link: formValues.placeImage })
+    .then((newCardData) => {
+      const newCard = new Card(
+        {
+          name: newCardData.name,
+          link: newCardData.link,
+        },
+        ".card-template",
+        handleCardClick,
+      );
+      const cardElement = newCard.generateCard();
+      cardSection.addItem(cardElement);
+      addCardPopup.close();
+    })
+    .catch((err) => console.log(err));
+});
+
+/* const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
   const newCard = new Card(
     {
       name: formValues.placeTitle,
@@ -45,7 +64,7 @@ const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
   const cardElement = newCard.generateCard();
   cardSection.addItem(cardElement);
   addCardPopup.close();
-});
+}); */
 addCardPopup.setEventListeners();
 
 const addPopup = new Popup(".popupPlace");
@@ -131,11 +150,13 @@ addFormValidator.enableValidation();
 
 const formSubmitAddForm = document.querySelector("#addForm");
 
+let cardSection;
+
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cardsData]) => {
     userInfo.setUserInfo(userData);
 
-    const cardSection = new Section(
+    cardSection = new Section(
       {
         items: cardsData,
         renderer: (item) => {
