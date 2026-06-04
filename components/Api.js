@@ -30,11 +30,19 @@ export default class Api {
       body: JSON.stringify({ name: name, link: link }),
     }).then((res) => this._checkResponse(res));
   }
+
   updateUserInfo({ name, about }) {
     return fetch(this._baseUrl + "/users/me", {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ name: name, about: about }),
+    }).then((res) => this._checkResponse(res));
+  }
+
+  deleteCard(cardId) {
+    return fetch(this._baseUrl + "/cards/" + cardId, {
+      method: "DELETE",
+      headers: this._headers,
     }).then((res) => this._checkResponse(res));
   }
 }
