@@ -27,8 +27,7 @@
 }
 
 .popupDeleteConfirmation {
-  /* display: none; */
-  display: flex; /* TEMPORATIO TEMPORARIO */
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -268,6 +267,11 @@
     height: 322px;
   }
 
+  .popup__container-delete {
+    width: 282px;
+    height: 181px;
+  }
+
   .popup__close-button {
     top: -40px;
     left: 254px;
@@ -285,6 +289,11 @@
     margin: 25px auto auto auto;
 
     font-size: 18px;
+  }
+
+  .popup__container-title-delete {
+    max-width: 238px;
+    margin: 34px auto 38px auto;
   }
 
   .popup__form-fieldset {
