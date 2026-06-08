@@ -59,6 +59,7 @@ const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
         ".card-template",
         handleCardClick,
         handleDeleteClick,
+        handleLikeClick,
       );
       const cardElement = newCard.generateCard();
       cardSection.addItem(cardElement);
@@ -106,6 +107,24 @@ const handleDeleteClick = (cardId, cardInstance) => {
       .catch((err) => console.log(err));
   });
   confirmPopup.open();
+};
+
+const handleLikeClick = (cardId, isLiked, updateLikeState) => {
+  if (isLiked === true) {
+    api
+      .unlikeCard(cardId)
+      .then((updatedCard) => {
+        updateLikeState(updatedCard.isLiked);
+      })
+      .catch((err) => console.log(err));
+  } else {
+    api
+      .likeCard(cardId)
+      .then((updatedCard) => {
+        updateLikeState(updatedCard.isLiked);
+      })
+      .catch((err) => console.log(err));
+  }
 };
 
 const editButton = document.querySelector(".profile__editButton");
@@ -198,6 +217,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
             ".card-template",
             handleCardClick,
             handleDeleteClick,
+            handleLikeClick,
           );
           const cardElement = card.generateCard();
           cardSection.addItem(cardElement);

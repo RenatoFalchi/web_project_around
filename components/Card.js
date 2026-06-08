@@ -63,6 +63,7 @@ export default class Card {
       this._name;
     this._element.querySelector(".gallery__grid-cardImage").alt = this._name;
     this._element.querySelector(".gallery__grid-cardImage").src = this._link;
+    this._updateLikeIcon();
     this._setEventListeners();
     return this._element;
   }
