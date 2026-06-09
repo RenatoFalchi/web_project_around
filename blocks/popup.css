@@ -26,6 +26,20 @@
   right: 0;
 }
 
+.popupProfilePicture {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  min-width: 100%;
+  min-height: 100%;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
 .popupDeleteConfirmation {
   display: none;
   flex-direction: column;
@@ -44,7 +58,16 @@
   position: relative;
   background-color: #fff;
   width: 430px;
-  height: 181px;
+  height: 272px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px 0px #000;
+}
+
+.popup__containerProfilePicture {
+  position: relative;
+  background-color: #fff;
+  width: 430px;
+  height: 272px;
   border-radius: 10px;
   box-shadow: 0 5px 20px 0px #000;
 }
@@ -109,6 +132,17 @@
   margin: 54px auto 13px 36px;
   padding: 0px;
   min-height: 124px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.popup__form-fieldsetProfile {
+  margin: 54px auto 13px 36px;
+  padding: 0px;
+
   background-color: transparent;
   border: none;
   display: flex;
@@ -267,6 +301,11 @@
     height: 322px;
   }
 
+  .popup__containerProfilePicture {
+    width: 282px;
+    height: 240px;
+  }
+
   .popup__container-delete {
     width: 282px;
     height: 181px;
@@ -311,6 +350,10 @@
 
   .popup__form-error {
     width: 242px;
+  }
+
+  .popup__form-fieldsetProfile {
+    margin: 54px auto auto auto;
   }
 
   .popup__save-button {
