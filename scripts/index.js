@@ -22,6 +22,7 @@ editPopup.setEventListeners();
 const userInfo = new UserInfo({
   nameSelector: ".profile__info-name",
   aboutSelector: ".profile__info-about",
+  avatarSelector: ".profile__avatar",
 });
 
 const editPopupForm = new PopupWithForm(".popupedit", (formValues) => {
@@ -37,15 +38,19 @@ const editPopupForm = new PopupWithForm(".popupedit", (formValues) => {
     .catch((err) => console.log(err));
 });
 
-/* const editPopupForm = new PopupWithForm(".popupedit", (formValues) => {
-  console.log("teste", formValues);
-  userInfo.setUserInfo({
-    name: formValues.name,
-    about: formValues.about,
-  });
-  editPopupForm.close();
-}); */
 editPopupForm.setEventListeners();
+
+const avatarPopup = new PopupWithForm(".popupProfilePicture", (formValues) => {
+  api
+    .updateAvatar({ link: formValues.avatarLink })
+    .then((updatedAvatar) => {
+      userInfo.setAvatar(updatedAvatar.avatar);
+      avatarPopup.close();
+    })
+    .catch((err) => console.log(err));
+});
+
+avatarPopup.setEventListeners();
 
 const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
   api
@@ -207,7 +212,7 @@ let cardSection;
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cardsData]) => {
     userInfo.setUserInfo(userData);
-
+    userInfo.setAvatar(userData.avatar);
     cardSection = new Section(
       {
         items: cardsData,
