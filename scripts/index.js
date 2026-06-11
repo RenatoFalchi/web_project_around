@@ -203,12 +203,15 @@ const validationConfig = {
 
 const editForm = document.querySelector("#editForm");
 const addForm = document.querySelector("#addForm");
+const avatarForm = document.querySelector("#avatarForm");
 
 const editFormValidator = new FormValidator(validationConfig, editForm);
 const addFormValidator = new FormValidator(validationConfig, addForm);
+const avatarFormValidator = new FormValidator(validationConfig, avatarForm);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 const formSubmitAddForm = document.querySelector("#addForm");
 
