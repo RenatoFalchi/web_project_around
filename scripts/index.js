@@ -13,7 +13,7 @@ const api = new Api({
   headers: {
     authorization: "c658acda-adc7-49b7-9ee9-cbbb31f96c40",
     "Content-Type": "application/json",
-  } /* ////////////////////////    PONTO DE ATENÇÃO PARA AS VIRGULAS //////////////////////////////////////////////////////////////////// */,
+  },
 });
 
 const editPopup = new Popup(".popupedit");
@@ -25,7 +25,22 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__avatar",
 });
 
+const avatarPopup = new PopupWithForm(".popupProfilePicture", (formValues) => {
+  avatarPopup.renderLoading(true);
+  api
+    .updateAvatar({ link: formValues.avatarLink })
+    .then((updatedAvatar) => {
+      userInfo.setAvatar(updatedAvatar.avatar);
+      avatarPopup.close();
+    })
+    .catch((err) => console.log(err))
+    .finally(() => avatarPopup.renderLoading(false));
+});
+
+avatarPopup.setEventListeners();
+
 const editPopupForm = new PopupWithForm(".popupedit", (formValues) => {
+  editPopupForm.renderLoading(true);
   api
     .updateUserInfo({ name: formValues.name, about: formValues.about })
     .then((updatedUser) => {
@@ -35,24 +50,15 @@ const editPopupForm = new PopupWithForm(".popupedit", (formValues) => {
       });
       editPopupForm.close();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
+    .finally(() => editPopupForm.renderLoading(false));
 });
 
 editPopupForm.setEventListeners();
 
-const avatarPopup = new PopupWithForm(".popupProfilePicture", (formValues) => {
-  api
-    .updateAvatar({ link: formValues.avatarLink })
-    .then((updatedAvatar) => {
-      userInfo.setAvatar(updatedAvatar.avatar);
-      avatarPopup.close();
-    })
-    .catch((err) => console.log(err));
-});
-
-avatarPopup.setEventListeners();
-
 const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
+  addCardPopup.renderLoading(true);
+
   api
     .addCard({ name: formValues.placeTitle, link: formValues.placeImage })
     .then((newCardData) => {
@@ -70,28 +76,15 @@ const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
       cardSection.addItem(cardElement);
       addCardPopup.close();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
+    .finally(() => addCardPopup.renderLoading(false));
 });
 
-/* const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
-  const newCard = new Card(
-    {
-      name: formValues.placeTitle,
-      link: formValues.placeImage,
-    },
-    ".card-template",
-    handleCardClick,
-  );
-  const cardElement = newCard.generateCard();
-  cardSection.addItem(cardElement);
-  addCardPopup.close();
-}); */
+addCardPopup.setEventListeners();
 
 const confirmPopup = new PopupWithConfirmation(".popupDeleteConfirmation");
 
 confirmPopup.setEventListeners();
-
-addCardPopup.setEventListeners();
 
 const addPopup = new Popup(".popupPlace");
 addPopup.setEventListeners();
@@ -150,47 +143,6 @@ avatarButton.addEventListener("click", () => {
 });
 
 const galleryGrid = document.querySelector(".gallery__grid");
-
-/* const initialCards = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-  {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-  },
-  {
-    name: "Parque Nacional da Vanoise ",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-  },
-]; */
-
-/* const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, ".card-template", handleCardClick);
-      const cardElement = card.generateCard();
-      cardSection.addItem(cardElement);
-    },
-  },
-  ".gallery__grid",
-); */
-
-/* cardSection.renderItems(); */
 
 const validationConfig = {
   formSelector: ".popup__form",

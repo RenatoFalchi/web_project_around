@@ -6,8 +6,10 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector(".popup__form");
     this._inputList = Array.from(
-      this._form.querySelectorAll(".popup__form-fieldsetInput")
+      this._form.querySelectorAll(".popup__form-fieldsetInput"),
     );
+    this._submitButton = this._form.querySelector(".popup__save-button");
+    this._submitButtonText = this._submitButton.textContent;
   }
 
   _getInputValues() {
@@ -22,6 +24,14 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
     });
+  }
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = "Salvando...";
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
 
   close() {
