@@ -1,100 +1,93 @@
 # Tripleten web_project_around
 
-Sprint 11 — Programação Orientada a Objetos e Refatoração
-1️⃣ — Projeto: Sprint 11 — Renato Falchi Correia de Oliveira
+Sprint 12 — JavaScript Assíncrono e Trabalho com APIs
+1️⃣ — Projeto: Sprint 12 — Renato Falchi Correia de Oliveira
 
-Este projeto dá continuidade ao desenvolvimento do Around The U.S., agora com foco em refatoração avançada, Programação Orientada a Objetos (OOP) e organização modular do código.
-A Sprint 11 introduz diversas novas classes, substituindo blocos de código procedurais por estruturas orientadas a objetos mais reutilizáveis, escaláveis e fáceis de manter.
+Este projeto dá continuidade ao desenvolvimento do Around The U.S., agora com foco em comunicação com servidor via API REST, JavaScript assíncrono e atualização dinâmica da interface com base em dados reais.
+A Sprint 12 conecta a aplicação a um servidor real, substituindo todos os dados estáticos por requisições HTTP, e adiciona novas funcionalidades como exclusão com confirmação e atualização de avatar.
 
 2️⃣ — Objetivo do projeto
 
-Refatorar e modularizar a aplicação adicionando as seguintes funcionalidades por meio de classes dedicadas, cada uma responsável por uma parte específica da lógica:
+Conectar a aplicação ao servidor e implementar as seguintes funcionalidades:
 
-Criar e renderizar elementos na página usando a classe Section
+Criar a classe Api para centralizar todas as requisições HTTP
 
-Gerenciar popups com a classe genérica Popup
+Carregar dados reais do usuário e cartões do servidor ao abrir a página
 
-Criar popups especializados:
+Salvar alterações de perfil no servidor via PATCH
 
-PopupWithImage para exibir imagens ampliadas
+Adicionar novos cartões ao servidor via POST
 
-PopupWithForm para formulários
+Deletar cartões com confirmação via popup
 
-Manipular dados do usuário com a classe UserInfo
+Curtir e descurtir cartões sincronizando com o servidor
 
-Conectar a classe Card aos popups usando o callback handleCardClick()
+Atualizar a foto de perfil via popup dedicado
 
-O resultado final é um projeto bem estruturado, com todas as funcionalidades encapsuladas, seguindo princípios de SRP (Single Responsibility Principle) e boas práticas de OOP.
+Melhorar a UX com o estado "Salvando..." nos botões durante requisições
 
-3️⃣ — Funcionalidades implementadas com classes
-🧩 Classe Section
+3️⃣ — Funcionalidades implementadas
 
-Responsável por renderizar listas de elementos na página.
+🌐 Classe Api
 
-Recebe items (array) e renderer (callback) no construtor.
+Centraliza toda a comunicação com o servidor.
+Métodos implementados:
 
-Renderiza todos os elementos com renderItems().
+getUserInfo() — busca dados do usuário logado
 
-Insere novos cards dinamicamente com addItem().
+getInitialCards() — busca lista de cartões
 
-🪟 Classe Popup
+getUserAndCards() — carrega usuário e cartões simultaneamente com Promise.all
 
-Classe base para todos os popups.
-Implementa:
+updateUserInfo() — atualiza nome e sobre via PATCH
 
-open() e close()
+updateAvatar() — atualiza foto de perfil via PATCH
 
-Fechamento via tecla Escape
+addCard() — adiciona novo cartão via POST
 
-Fechamento ao clicar na sobreposição
+deleteCard() — exclui cartão via DELETE
 
-setEventListeners() para adicionar eventos globais ao popup
+likeCard() — curte cartão via PUT
 
-🖼️ Classe PopupWithImage (herda Popup)
+unlikeCard() — remove curtida via DELETE
 
-Controla o popup de visualização de imagens.
+🗑️ Classe PopupWithConfirmation (herda Popup)
 
-Sobrescreve open() para inserir imagem e legenda dinamicamente.
+Novo popup de confirmação para exclusão de cartões.
 
-📝 Classe PopupWithForm (herda Popup)
+Recebe um handler via setConfirmAction()
 
-Gerencia popups com formulários.
+Executa a ação apenas se o usuário confirmar clicando em "Sim"
 
-Recebe callback de submit no construtor
+🃏 Classe Card (atualizada)
 
-Implementa \_getInputValues() para coletar dados
+Agora recebe \_id, isLiked e owner do servidor.
 
-Adiciona evento de submit ao formulário
+Renderiza o ícone de curtida corretamente ao carregar
 
-Sobrescreve close() para limpar o formulário após envio
+Delega as ações de curtir e deletar para o index.js via callbacks
 
-👤 Classe UserInfo
+🪟 Classe PopupWithForm (atualizada)
 
-Responsável pelo gerenciamento de dados do usuário:
+Novo método renderLoading(isLoading) que altera o texto do botão para "Salvando..." durante requisições e restaura o texto original ao terminar.
 
-Obtém informações do usuário com getUserInfo()
+👤 Classe UserInfo (atualizada)
 
-Atualiza nome e ocupação com setUserInfo()
-
-Sincroniza dados exibidos na interface com o popup de edição
-
-🃏 Classe Card (refatorada)
-
-Agora recebe a função handleCardClick() no construtor.
-
-Ao clicar na imagem, abre o popup de visualização usando o popup de imagem.
+Novo método setAvatar(link) para atualizar a foto de perfil na página.
 
 🔧 Outros requisitos atendidos
 
-Todo código orientado a objetos está isolado em arquivos próprios
+Todas as requisições ao servidor são feitas exclusivamente pela classe Api
 
-O arquivo index.js agora é responsável apenas pela criação das instâncias e addEventListeners
+Respostas do servidor são sempre verificadas com res.ok
 
-Lógica repetitiva foi eliminada
+Erros são tratados com .catch() em todas as requisições
 
-Componentes independentes se comunicam apenas via callbacks
+Os cartões são renderizados apenas após receber o id do usuário
 
-Código mais limpo, organizado e escalável
+Popup de avatar com efeito hover sobre a foto de perfil
+
+Validação de formulários em todos os popups incluindo o de avatar
 
 4️⃣ — Tecnologias utilizadas
 
@@ -108,13 +101,19 @@ JavaScript (ES6+)
 Manipulação de DOM, modularização e orientação a objetos.
 
 Programação Orientada a Objetos (OOP)
-Classes separadas por responsabilidade: Card, Section, Popup, PopupWithImage, PopupWithForm, UserInfo.
+Classes separadas por responsabilidade: Card, Section, Popup, PopupWithImage, PopupWithForm, PopupWithConfirmation, UserInfo, Api.
+
+JavaScript Assíncrono
+Promises, .then(), .catch(), .finally() e Promise.all() para requisições paralelas.
+
+API REST
+Comunicação com servidor via fetch usando métodos GET, POST, PATCH, PUT e DELETE.
+
+Autenticação por token
+Token pessoal enviado no cabeçalho authorization em todas as requisições.
 
 Validação de formulários
-Mantida da sprint anterior via FormValidator.
-
-Webpack / caminho modular (caso use)
-Imports e organização de componentes.
+Implementada via FormValidator em todos os formulários da aplicação.
 
 GitHub Pages
 Hospedagem da versão final do projeto.
