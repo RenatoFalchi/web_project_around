@@ -144,6 +144,11 @@ addButton.addEventListener("click", () => {
   addPopup.open();
 });
 
+const avatarButton = document.querySelector(".profile__avatar-button");
+avatarButton.addEventListener("click", () => {
+  avatarPopup.open();
+});
+
 const galleryGrid = document.querySelector(".gallery__grid");
 
 /* const initialCards = [
