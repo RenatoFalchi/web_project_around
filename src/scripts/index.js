@@ -156,7 +156,8 @@ avatarFormValidator.enableValidation();
 
 let cardSection;
 
-Promise.all([api.getUserInfo(), api.getInitialCards()])
+api
+  .getUserAndCards()
   .then(([userData, cardsData]) => {
     userInfo.setUserInfo(userData);
     userInfo.setAvatar(userData.avatar);
