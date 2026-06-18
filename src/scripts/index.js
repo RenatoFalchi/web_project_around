@@ -16,9 +16,6 @@ const api = new Api({
   },
 });
 
-const editPopup = new Popup(".popupedit");
-editPopup.setEventListeners();
-
 const userInfo = new UserInfo({
   nameSelector: ".profile__info-name",
   aboutSelector: ".profile__info-about",
@@ -63,10 +60,7 @@ const addCardPopup = new PopupWithForm(".popupPlace", (formValues) => {
     .addCard({ name: formValues.placeTitle, link: formValues.placeImage })
     .then((newCardData) => {
       const newCard = new Card(
-        {
-          name: newCardData.name,
-          link: newCardData.link,
-        },
+        newCardData,
         ".card-template",
         handleCardClick,
         handleDeleteClick,
@@ -85,9 +79,6 @@ addCardPopup.setEventListeners();
 const confirmPopup = new PopupWithConfirmation(".popupDeleteConfirmation");
 
 confirmPopup.setEventListeners();
-
-const addPopup = new Popup(".popupPlace");
-addPopup.setEventListeners();
 
 const placePopup = new PopupWithImage(".photoFrame");
 placePopup.setEventListeners();
@@ -130,19 +121,17 @@ editButton.addEventListener("click", () => {
   const currentUserInfo = userInfo.getUserInfo();
   document.querySelector("#name").value = currentUserInfo.name;
   document.querySelector("#about").value = currentUserInfo.about;
-  editPopup.open();
+  editPopupForm.open();
 });
 const addButton = document.querySelector(".profile__addButton");
 addButton.addEventListener("click", () => {
-  addPopup.open();
+  addCardPopup.open();
 });
 
 const avatarButton = document.querySelector(".profile__avatar-button");
 avatarButton.addEventListener("click", () => {
   avatarPopup.open();
 });
-
-const galleryGrid = document.querySelector(".gallery__grid");
 
 const validationConfig = {
   formSelector: ".popup__form",
@@ -164,8 +153,6 @@ const avatarFormValidator = new FormValidator(validationConfig, avatarForm);
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
-
-const formSubmitAddForm = document.querySelector("#addForm");
 
 let cardSection;
 
